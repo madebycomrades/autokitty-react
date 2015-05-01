@@ -1,0 +1,7 @@
+npm-debug.log
+
+/node_modules
+
+/public/jspm_packages
+/public/main.bundle.es5.js
+/public/main.bundle.es5.js.map
