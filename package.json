@@ -13,7 +13,7 @@
     "db:pull": "docker pull klaemo/couchdb:1.6.1",
     "db:up": "./scripts/db-up",
     "db:down": "./scripts/db-down",
-    "db:browse": "open http://$(boot2docker ip):5984/_utils",
+    "db:browse": "open http://$(boot2docker ip):5984/_utils/fauxton/",
     "db:attach": "docker attach autokitty",
     "db:fixtures": "babel-node --stage 0 db/scripts/fixtures.js",
     "db:design-doc": "babel-node --stage 0 db/scripts/design-doc.js"
@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "babel": "^5.1.11",
+    "co-body": "^1.2.0",
     "flummox": "^4.0.0-alpha",
     "handlebars": "^3.0.2",
     "isomorphic-fetch": "^2.0.2",

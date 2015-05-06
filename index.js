@@ -1,9 +1,11 @@
-import appView from './views/app/app';
 import koa from 'koa';
-import projectGetView from './views/api/project/get';
-import projectCollectionView from './views/api/project/collection';
 import statics from 'koa-static';
 import 'isomorphic-fetch';
+
+import appView from './views/app/app';
+import projectGetView from './views/api/project/get';
+import projectCollectionView from './views/api/project/collection';
+import projectCreateView from './views/api/project/create';
 
 const {NODE_ENV,PORT,DB} = process.env;
 
@@ -12,6 +14,7 @@ let app = koa();
 app.use(statics('./public'));
 app.use(projectGetView);
 app.use(projectCollectionView);
+app.use(projectCreateView);
 app.use(appView);
 app.listen(PORT);
 

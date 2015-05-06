@@ -1,9 +1,12 @@
 import db from '../../../db/db';
 import route from 'koa-route';
+import {json} from 'co-body';
 
 export default route.post('/api/project',function * () {
-  // Parse JSON in body
-  // Add type=project
-  // Add to db
-  // return new doc and status 201
+  let body = yield json(this);
+  body.type = 'project';
+  let response = yield db.post(body);
+  this.response.type = 'json';
+  this.response.status = 201;
+  this.body = JSON.stringify({_id: response.id});
 });

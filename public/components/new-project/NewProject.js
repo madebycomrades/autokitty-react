@@ -1,6 +1,7 @@
 import React from 'react';
 import Router from 'react-router';
 import ProjectList from '../project-list/ProjectList';
+import {getRouter} from '../../router';
 
 let {Link} = Router;
 
@@ -14,10 +15,10 @@ export default class NewProject extends React.Component {
 
   submit = e => {
     e.preventDefault();
-    console.log('TODO: create a new project');
-    // 1. Get a flux reference
-    // 2. Call the newProject action
-    // 3. On promise resolved, transitionTo
+    let projectActions = this.props.flux.getActions('project');
+    let router = getRouter();
+    projectActions.newProject({title: this.state.title})
+      .then(response => router.transitionTo('project',{projectId:response._id}));
   }
 
   render () {

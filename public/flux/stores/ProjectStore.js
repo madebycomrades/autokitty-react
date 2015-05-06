@@ -10,10 +10,11 @@ export default class ProjectStore extends Store {
     return JSON.parse(stateString);
   }
 
+  state = {};
+
   constructor({projectActions}) {
     super();
     this.register(projectActions.fetchProject,this.handleFetchProject);
-    this.state = {};
   }
 
   handleFetchProject (project) {

@@ -17,7 +17,16 @@ export default class ProjectActions extends Actions {
   }
 
   async newProject (project) {
-    // 1. Create the project via the API
-    // 2. Populate into store
+    var ops = {
+      method: 'post',
+      headers: {'Accept':'application/json','Content-Type': 'application/json'},
+      body: JSON.stringify(project)
+    };
+    var response = await fetch(`${projectResourceUri}`,ops);
+    if (response.status === 201) {
+      return await response.json();
+    } else {
+      return await Promise.reject(new Error(`${response.status} creating project ${project.title}`));
+    }
   }
 }
