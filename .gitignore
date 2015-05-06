@@ -1,7 +1,9 @@
-npm-debug.log
+npm-debug.log*
 
 /node_modules
 
 /public/jspm_packages
-/public/main.bundle.es5.js
-/public/main.bundle.es5.js.map
+/public/main.bundle.js
+/public/main.bundle.js.map
+/public/main.bundle.css
+/public/main.bundle.css.map

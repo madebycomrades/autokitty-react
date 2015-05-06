@@ -1,0 +1,13 @@
+html {
+  box-sizing: border-box;
+  font-feature-settings: "kern" 1;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+  text-size-adjust: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit; /* 6 */
+}

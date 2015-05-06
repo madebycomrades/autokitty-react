@@ -4,7 +4,7 @@ import FluxComponent from 'flummox/component';
 
 let connectToStores = {
   project (store) {
-    return {project: store.get()};
+    return {project: store.getProject()};
   }
 }
 

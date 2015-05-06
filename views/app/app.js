@@ -3,18 +3,16 @@ import FluxComponent from 'flummox/component';
 import Handlebars from 'handlebars';
 import {readFileSync} from 'fs';
 import React from 'react';
-import Router from 'react-router';
-import routes from '../../public/routes';
+import {createRouter} from '../../public/router';
 
 const NODE_ENV = process.env.NODE_ENV;
 
 let tpl = Handlebars.compile(readFileSync(`${__dirname}/app.hbs`,{encoding:'utf8'}));
 let isDev = NODE_ENV === 'development';
 
-export default function * appView () {
+export default function * () {
 
-  let location = this.url
-  let router = Router.create({routes,location});
+  let router = createRouter(this.url);
 
   let flux = new Flux();
   let projectActions = flux.getActions('project');
@@ -24,8 +22,11 @@ export default function * appView () {
   });
 
   if ( state.params.projectId ) {
-    yield projectActions.get(state.params.projectId);
+    yield projectActions.fetchProject(state.params.projectId);
   }
+
+  let stateString = flux.serialize();
+  stateString = stateString.split('\\').join('\\\\');
 
   let appString = React.renderToString(
     <FluxComponent flux={flux}>
@@ -33,5 +34,5 @@ export default function * appView () {
     </FluxComponent>
   );
 
-  this.body = tpl({isDev,appString});
+  this.body = tpl({isDev,appString,stateString});
 }
