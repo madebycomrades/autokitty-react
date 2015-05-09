@@ -1,27 +1,43 @@
 import {Store} from 'flummox';
+import ProjectRecord from '../../records/ProjectRecord';
 
 export default class ProjectStore extends Store {
 
   static serialize (state) {
-    return JSON.stringify(state);
+    return JSON.stringify(state.toJS());
   }
 
   static deserialize (stateString) {
     return JSON.parse(stateString);
   }
 
-  state = {};
+  static assignState (oldState,newState) {
+    newState = newState instanceof ProjectRecord ? newState.toJS() : newState;
+    oldState = oldState ? oldState.toJS() : {};
+    return new ProjectRecord(Object.assign({},oldState,newState));
+  }
+
+  state = new ProjectRecord({});
 
   constructor({projectActions}) {
     super();
     this.register(projectActions.fetchProject,this.handleFetchProject);
+    this.register(projectActions.newProject,this.handleNewProject);
   }
 
   handleFetchProject (project) {
     this.setState(project);
   }
 
+  handleNewProject (project) {
+    this.setState(project);
+  }
+
   getProject () {
     return this.state;
+  }
+
+  getStateAsObject () {
+    return this.state.toJS();
   }
 }

@@ -25,11 +25,14 @@
     "dependencies": {
       "css": "github:systemjs/plugin-css@^0.1.10",
       "flummox": "npm:flummox@^4.0.0-alpha",
+      "immutable": "npm:immutable@^3.7.2",
       "isomorphic-fetch": "npm:isomorphic-fetch@^2.0.2",
       "normalize.css": "github:necolas/normalize.css@^3.0.3",
       "react": "npm:react@^0.13.2",
       "react-router": "npm:react-router@^0.13.3",
-      "react-style": "npm:react-style@^0.5.5"
+      "react-style": "npm:react-style@^0.5.5",
+      "shortid": "npm:shortid@^2.2.2",
+      "to-slug-case": "npm:to-slug-case@^0.1.2"
     },
     "devDependencies": {
       "babel": "npm:babel-core@^5.1.13",
@@ -42,6 +45,7 @@
     "co-body": "^1.2.0",
     "flummox": "^4.0.0-alpha",
     "handlebars": "^3.0.2",
+    "immutable": "^3.7.2",
     "isomorphic-fetch": "^2.0.2",
     "jspm": "^0.15.5",
     "koa": "^0.19.1",
@@ -51,7 +55,9 @@
     "pouchdb": "^3.4.0",
     "pouchdb-upsert": "^1.1.1",
     "react": "^0.13.2",
-    "react-router": "^0.13.3"
+    "react-router": "^0.13.3",
+    "shortid": "^2.2.2",
+    "to-slug-case": "^0.1.2"
   },
   "registry": "jspm",
   "engines": {

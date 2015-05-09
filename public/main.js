@@ -23,7 +23,10 @@ router.run(async (Root,state) => {
   // fetching when the app has just been recreated from a serialised server state
   // TODO: Clear the project in the store when we move off a project route
 
-  if ( state.params.projectId && projectStore.getProject()._id !== state.params.projectId) {
+  let newId = state.params.projectId;
+  let currentId = projectStore.getProject().get('_id');
+
+  if ( newId && currentId !== newId) {
     await projectActions.fetchProject(state.params.projectId);
   }
 
