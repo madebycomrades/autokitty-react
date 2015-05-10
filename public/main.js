@@ -11,24 +11,18 @@ import './base.css!';
 let flux = new Flux();
 flux.deserialize(stateString);
 
-let projectActions = flux.getActions('project');
-let projectStore = flux.getStore('project');
+let actions = flux.getActions('project');
+let store = flux.getStore('project');
 
 let router = createRouter(Router.HistoryLocation);
 
 router.run(async (Root,state) => {
 
-  // Only fetch a project if the route has a :projectId param in it
-  // which doesn't match the current project in the store - prevents double
-  // fetching when the app has just been recreated from a serialised server state
-  // TODO: Clear the project in the store when we move off a project route
+  let projectId = state.params.projectId;
 
-  let newId = state.params.projectId;
-  let currentId = projectStore.getProject().get('_id');
+  if (projectId && store.getProject().get('_id') !== projectId) await actions.fetchProject(projectId);
 
-  if ( newId && currentId !== newId) {
-    await projectActions.fetchProject(state.params.projectId);
-  }
+  if (!projectId) store.clearProject();
 
   React.render(
     <FluxComponent flux={flux}>

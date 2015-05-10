@@ -1,8 +1,0 @@
-#!/bin/sh
-
-# Prints the path to the development database to standard output
-
-IP=$(boot2docker ip)
-PORT=5984
-
-echo http://$IP:$PORT

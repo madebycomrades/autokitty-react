@@ -5,16 +5,12 @@
   "scripts": {
     "postinstall": "jspm install",
     "start": "npm run bundle && npm run server",
-    "dev:start": "NODE_ENV=development PORT=3000 DB=$(./scripts/db-uri)/autokitty npm run server",
+    "dev:start": "NODE_ENV=development PORT=3000 DB=./db/local/ak npm run server",
     "server": "babel-node --stage 0 index.js",
     "watch": "nodemon --ext js,json,hbs --exec 'npm run dev:start'",
-    "jspm": "jspm",
     "bundle": "jspm bundle-sfx main public/main.bundle.js",
-    "db:pull": "docker pull klaemo/couchdb:1.6.1",
-    "db:up": "./scripts/db-up",
-    "db:down": "./scripts/db-down",
-    "db:browse": "open http://$(boot2docker ip):5984/_utils/fauxton/",
-    "db:attach": "docker attach autokitty",
+    "db:init": "npm run db:rm && mkdir -p ./db/local/ak && DB=./db/local/ak npm run db:design-doc && DB=./db/local/ak npm run db:fixtures",
+    "db:rm": "rm -rf ./db/local/** > /dev/null 2>&1",
     "db:fixtures": "babel-node --stage 0 db/scripts/fixtures.js",
     "db:design-doc": "babel-node --stage 0 db/scripts/design-doc.js"
   },
@@ -41,7 +37,7 @@
     }
   },
   "dependencies": {
-    "babel": "^5.1.11",
+    "babel": "^5.1.13",
     "co-body": "^1.2.0",
     "flummox": "^4.0.0-alpha",
     "handlebars": "^3.0.2",
@@ -51,6 +47,7 @@
     "koa": "^0.19.1",
     "koa-route": "^2.4.1",
     "koa-static": "^1.4.9",
+    "leveldown": "^1.0.6",
     "nodemon": "^1.3.7",
     "pouchdb": "^3.4.0",
     "pouchdb-upsert": "^1.1.1",

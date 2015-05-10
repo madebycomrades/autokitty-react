@@ -7,3 +7,5 @@ npm-debug.log*
 /public/main.bundle.js.map
 /public/main.bundle.css
 /public/main.bundle.css.map
+
+/db/local

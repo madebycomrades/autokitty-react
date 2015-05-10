@@ -6,7 +6,6 @@ let projectResourceUri = `${apiPath()}/project`;
 export default class ProjectActions extends Actions {
 
   async fetchProject (id) {
-    console.log('Fetch',id);
 
     var response = await fetch(`${projectResourceUri}/${id}`);
 
@@ -18,7 +17,6 @@ export default class ProjectActions extends Actions {
   }
 
   async newProject (project) {
-    console.log('New',project.title);
 
     var response = await fetch(projectResourceUri,{
       method: 'post',

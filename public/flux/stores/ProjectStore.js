@@ -37,6 +37,10 @@ export default class ProjectStore extends Store {
     return this.state;
   }
 
+  clearProject () {
+    this.replaceState({});
+  }
+
   getStateAsObject () {
     return this.state.toJS();
   }
