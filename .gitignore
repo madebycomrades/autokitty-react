@@ -8,4 +8,4 @@ npm-debug.log*
 /public/main.bundle.css
 /public/main.bundle.css.map
 
-/db/local
+/.db

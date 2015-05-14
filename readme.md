@@ -35,6 +35,16 @@ $ NODE_ENV=production PORT=3000 DB=./db/local/ak npm start
 
 > TODO: Where will we deploy the live app to? Dokku? Heroku?
 
+## Tests
+
+The unit tests run with Jasmine. Where needed they provide a DOM implementation using jsdom, therefore no browser headless or otherwise is required. Modules are mocked using proxyquire.
+
+Run the unit tests with,
+
+```sh
+$ npm test
+```
+
 ## Database
 
 The database is based on [PouchDB](http://pouchdb.com). A flexible interface to local and remote data sources that implements the CouchDB API.
@@ -46,7 +56,7 @@ The development database is created locally at `./db/local/ak`.
 To freshly create (or recreate) the development database, insert its design document and populate it with fixture data run,
 
 ```sh
-$ npm run db:init
+$ npm run dev:db:init
 ```
 
 ### Production

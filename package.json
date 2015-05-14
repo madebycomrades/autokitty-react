@@ -2,17 +2,22 @@
   "name": "autokitty",
   "version": "0.0.1",
   "description": "This kitty sorts out your complicated group expenses",
+  "config": {
+    "devdb": ".db/autokitty"
+  },
   "scripts": {
     "postinstall": "jspm install",
     "start": "npm run bundle && npm run server",
-    "dev:start": "NODE_ENV=development PORT=3000 DB=./db/local/ak npm run server",
-    "server": "babel-node --stage 0 index.js",
+    "dev:start": "NODE_ENV=development PORT=3000 DB=$npm_package_config_devdb npm run server",
+    "server": "SCRIPT=index.js npm run babel-node",
     "watch": "nodemon --ext js,json,hbs --exec 'npm run dev:start'",
     "bundle": "jspm bundle-sfx main public/main.bundle.js",
-    "db:init": "npm run db:rm && mkdir -p ./db/local/ak && DB=./db/local/ak npm run db:design-doc && DB=./db/local/ak npm run db:fixtures",
-    "db:rm": "rm -rf ./db/local/** > /dev/null 2>&1",
-    "db:fixtures": "babel-node --stage 0 db/scripts/fixtures.js",
-    "db:design-doc": "babel-node --stage 0 db/scripts/design-doc.js"
+    "dev:db:init": "npm run dev:db:rm; mkdir -p $DB; export DB=$npm_package_config_devdb; export NODE_ENV=development; npm run db:design-doc && npm run db:fixtures",
+    "dev:db:rm": "rm -rf $npm_package_config_devdb*/ > /dev/null 2>&1",
+    "db:fixtures": "SCRIPT=db/scripts/fixtures.js npm run babel-node",
+    "db:design-doc": "SCRIPT=db/scripts/design-doc.js npm run babel-node",
+    "babel-node": "babel-node --stage 0 $SCRIPT",
+    "test": "JASMINE_CONFIG_PATH=jasmine.json babel-node --stage 0 node_modules/.bin/jasmine"
   },
   "jspm": {
     "directories": {
@@ -38,11 +43,14 @@
   },
   "dependencies": {
     "babel": "^5.1.13",
+    "babel-core": "^5.3.3",
     "co-body": "^1.2.0",
     "flummox": "^4.0.0-alpha",
     "handlebars": "^3.0.2",
     "immutable": "^3.7.2",
     "isomorphic-fetch": "^2.0.2",
+    "jasmine": "^2.3.1",
+    "jsdom": "^5.4.1",
     "jspm": "^0.15.5",
     "koa": "^0.19.1",
     "koa-route": "^2.4.1",
@@ -51,6 +59,7 @@
     "nodemon": "^1.3.7",
     "pouchdb": "^3.4.0",
     "pouchdb-upsert": "^1.1.1",
+    "proxyquire": "^1.4.0",
     "react": "^0.13.2",
     "react-router": "^0.13.3",
     "shortid": "^2.2.2",
