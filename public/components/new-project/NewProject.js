@@ -1,9 +1,6 @@
 import React from 'react';
-import Router from 'react-router';
 import ProjectList from '../project-list/ProjectList';
 import {getRouter} from '../../router';
-
-let {Link} = Router;
 
 export default class NewProject extends React.Component {
 
@@ -18,7 +15,7 @@ export default class NewProject extends React.Component {
     let projectActions = this.props.flux.getActions('project');
     let router = getRouter();
     projectActions.newProject({title: this.state.title})
-      .then(response => router.transitionTo('project',{projectId:response._id}));
+      .then(response => router.transitionTo('project',{projectId: response._id}));
   }
 
   render () {
@@ -34,4 +31,4 @@ export default class NewProject extends React.Component {
       </div>
     );
   }
-};
+}

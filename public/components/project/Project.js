@@ -10,4 +10,4 @@ export default class Project extends React.Component {
       </div>
     );
   }
-};
+}

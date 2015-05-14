@@ -14,4 +14,4 @@ export default class Chrome extends React.Component {
       </div>
     );
   }
-};
+}

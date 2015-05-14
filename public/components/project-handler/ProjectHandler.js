@@ -6,7 +6,7 @@ let connectToStores = {
   project (store) {
     return {project: store.getProject()};
   }
-}
+};
 
 export default class ProjectHandler extends React.Component {
 
@@ -17,4 +17,4 @@ export default class ProjectHandler extends React.Component {
       </FluxComponent>
     );
   }
-};
+}

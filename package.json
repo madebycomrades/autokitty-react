@@ -12,12 +12,13 @@
     "server": "SCRIPT=index.js npm run babel-node",
     "watch": "nodemon --ext js,json,hbs --exec 'npm run dev:start'",
     "bundle": "jspm bundle-sfx main public/main.bundle.js",
-    "dev:db:init": "npm run dev:db:rm; mkdir -p $DB; export DB=$npm_package_config_devdb; export NODE_ENV=development; npm run db:design-doc && npm run db:fixtures",
+    "dev:db:init": "npm run dev:db:rm; export DB=$npm_package_config_devdb; export NODE_ENV=development; mkdir -p $DB; npm run db:design-doc && npm run db:fixtures",
     "dev:db:rm": "rm -rf $npm_package_config_devdb*/ > /dev/null 2>&1",
     "db:fixtures": "SCRIPT=db/scripts/fixtures.js npm run babel-node",
     "db:design-doc": "SCRIPT=db/scripts/design-doc.js npm run babel-node",
     "babel-node": "babel-node --stage 0 $SCRIPT",
-    "test": "JASMINE_CONFIG_PATH=jasmine.json babel-node --stage 0 node_modules/.bin/jasmine"
+    "test": "JASMINE_CONFIG_PATH=jasmine.json SCRIPT=node_modules/.bin/jasmine npm run babel-node",
+    "lint": "eslint public"
   },
   "jspm": {
     "directories": {
@@ -44,7 +45,10 @@
   "dependencies": {
     "babel": "^5.1.13",
     "babel-core": "^5.3.3",
+    "babel-eslint": "hzoo/babel-eslint#085c97131e02f0812f4b81c548795a967cd366c2",
     "co-body": "^1.2.0",
+    "eslint": "^0.21.0",
+    "eslint-plugin-react": "^2.3.0",
     "flummox": "^4.0.0-alpha",
     "handlebars": "^3.0.2",
     "immutable": "^3.7.2",

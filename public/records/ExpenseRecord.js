@@ -3,7 +3,7 @@ import slug from 'to-slug-case';
 
 let {Record,Set} = immutable;
 
-let defaults ={
+let defaults = {
   title: undefined,
   value: undefined,
   slug: undefined,

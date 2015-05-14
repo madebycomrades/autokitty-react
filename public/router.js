@@ -1,4 +1,3 @@
-import React from 'react';
 import Router from 'react-router';
 import Chrome from './components/chrome/Chrome';
 import NewProject from './components/new-project/NewProject';

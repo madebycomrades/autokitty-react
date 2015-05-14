@@ -30,14 +30,18 @@ $ npm run watch
 Starting the server in production mode will first bundle the client into a single self executing file using jspm. The server will expect a number of env vars to be present, and you can supply these manually to simulate running the app in production mode locally,
 
 ```sh
-$ NODE_ENV=production PORT=3000 DB=./db/local/ak npm start
+$ NODE_ENV=production PORT=3000 DB=.db/autokitty npm start
 ```
 
 > TODO: Where will we deploy the live app to? Dokku? Heroku?
 
 ## Tests
 
-The unit tests run with Jasmine. Where needed they provide a DOM implementation using jsdom, therefore no browser headless or otherwise is required. Modules are mocked using proxyquire.
+Lint with,
+
+```sh
+$ npm lint
+```
 
 Run the unit tests with,
 
@@ -45,13 +49,15 @@ Run the unit tests with,
 $ npm test
 ```
 
+> The unit tests use Jasmine. For tests that interact with the DOM `window` and `document` globals are provided by jsdom without the need for a browser. Module imports can be mocked in test subjects using proxyquire.
+
 ## Database
 
-The database is based on [PouchDB](http://pouchdb.com). A flexible interface to local and remote data sources that implements the CouchDB API.
+[PouchDB](http://pouchdb.com) provides a unified CouchDB-based interface to local or remote data stores.
 
 ### Development
 
-The development database is created locally at `./db/local/ak`.
+The development database is created locally in the `.db/` folder.
 
 To freshly create (or recreate) the development database, insert its design document and populate it with fixture data run,
 

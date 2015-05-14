@@ -19,7 +19,7 @@ export default class ProjectStore extends Store {
 
   state = new ProjectRecord({});
 
-  constructor({projectActions}) {
+  constructor ({projectActions}) {
     super();
     this.register(projectActions.fetchProject,this.handleFetchProject);
     this.register(projectActions.newProject,this.handleNewProject);

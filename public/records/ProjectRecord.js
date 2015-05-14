@@ -13,7 +13,7 @@ let defaults = {
   members: undefined,
   createdAt: undefined,
   updatedAt: undefined
-}
+};
 
 export default class ProjectRecord extends Record(defaults) {
 
