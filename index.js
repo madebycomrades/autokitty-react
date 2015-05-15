@@ -7,7 +7,7 @@ import projectGetView from './views/api/project/get';
 import projectCollectionView from './views/api/project/collection';
 import projectCreateView from './views/api/project/create';
 
-const {NODE_ENV,PORT,DB} = process.env;
+const {NODE_ENV,PORT} = process.env;
 
 let app = koa();
 

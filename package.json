@@ -17,8 +17,8 @@
     "db:fixtures": "SCRIPT=db/scripts/fixtures.js npm run babel-node",
     "db:design-doc": "SCRIPT=db/scripts/design-doc.js npm run babel-node",
     "babel-node": "babel-node --stage 0 $SCRIPT",
-    "test": "JASMINE_CONFIG_PATH=jasmine.json SCRIPT=node_modules/.bin/jasmine npm run babel-node",
-    "lint": "eslint public views db"
+    "test": "JASMINE_CONFIG_PATH=jasmine.json SCRIPT=test.js npm run babel-node",
+    "lint": "eslint test.js index.js public views db jasmine-helpers"
   },
   "jspm": {
     "directories": {
@@ -54,6 +54,7 @@
     "immutable": "^3.7.2",
     "isomorphic-fetch": "^2.0.2",
     "jasmine": "^2.3.1",
+    "jasmine-spec-reporter": "^2.2.1",
     "jsdom": "^5.4.1",
     "jspm": "^0.15.5",
     "koa": "^0.19.1",
