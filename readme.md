@@ -2,16 +2,35 @@
 
 ## Tech
 
-- ES6
+- ES6 (via Babel)
 - Koa server
 - PouchDB
-- Isomorphic React
-- Flux architecture
-- jspm
+- Isomorphic React + Flux
+- npm/jspm
 
 ## System requirements
 
-- iojs 2.0.0 npm 2.9.0 (manage Node/iojs/npm versions with [nvm](https://github.com/creationix/nvm))
+- iojs `^2.0.0` (manage versions with [nvm](https://github.com/creationix/nvm))
+
+## Quick start
+
+```sh
+npm i
+npm run dev:db:init
+npm run watch
+```
+
+## Package managers
+
+This project uses jspm for client packages, and npm for server packages. For packages intended to be used in files executed across both client and server ensure that the packages are installed using both managers and their versions are in sync.
+
+In development mode jspm handles module loading and ES6 transpiling in real time in the browser, therefore no compilation step is required. When running in production mode the app is bundled into a single pre-compiled self executing file.
+
+To install a frontend package use the local jspm,
+
+```sh
+$ node_modules/.bin/jspm install npm:react
+```
 
 ## Server
 
@@ -23,11 +42,15 @@ Ensure that the development database has been initialised and then,
 $ npm run watch
 ```
 
-> The server will start in development mode, watch local files for changes and restart when necessary.
+To run the development server without file watching and restarting,
+
+```sh
+$ npm run dev:start
+```
 
 ### Production
 
-Starting the server in production mode will first bundle the client into a single self executing file using jspm. The server will expect a number of env vars to be present, and you can supply these manually to simulate running the app in production mode locally,
+Starting the server in production mode will first bundle the client into a single self executing file using jspm. The server will expect a number of env vars to be present, and you can supply these manually to simulate locally running the app in production mode,
 
 ```sh
 $ NODE_ENV=production PORT=3000 DB=.db/autokitty npm start
@@ -40,16 +63,16 @@ $ NODE_ENV=production PORT=3000 DB=.db/autokitty npm start
 Lint with,
 
 ```sh
-$ npm lint
+$ npm run -s lint
 ```
 
 Run the unit tests with,
 
 ```sh
-$ npm test
+$ npm t
 ```
 
-> The unit tests use Jasmine. For tests that interact with the DOM `window` and `document` globals are provided by jsdom without the need for a browser. Module imports can be mocked in test subjects using proxyquire.
+> The unit tests use Jasmine. For tests that interact with the DOM `window` and `document` globals are provided by jsdom without the need for a browser, headless or otherwise. Module imports can be mocked in test subjects using proxyquire.
 
 ## Database
 
