@@ -3,9 +3,8 @@ export function isServer () {
 }
 
 export function apiPath () {
-  if ( isServer() ) {
-    const {PORT} = process.env;
-    return `http://localhost:${PORT}/api`;
+  if (isServer()) {
+    return `http://localhost:${process.env.PORT}/api`;
   } else {
     return '/api';
   }

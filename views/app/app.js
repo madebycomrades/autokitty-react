@@ -7,7 +7,7 @@ import {createRouter} from '../../public/router';
 
 const NODE_ENV = process.env.NODE_ENV;
 
-let tpl = Handlebars.compile(readFileSync(`${__dirname}/app.hbs`,{encoding:'utf8'}));
+let tpl = Handlebars.compile(readFileSync(`${__dirname}/app.hbs`,{encoding: 'utf8'}));
 let isDev = NODE_ENV === 'development';
 
 export default function * () {
@@ -21,7 +21,7 @@ export default function * () {
     router.run((Root,state) => resolve({Root,state}));
   });
 
-  if ( state.params.projectId ) {
+  if (state.params.projectId) {
     yield projectActions.fetchProject(state.params.projectId);
   }
 

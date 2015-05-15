@@ -18,7 +18,7 @@
     "db:design-doc": "SCRIPT=db/scripts/design-doc.js npm run babel-node",
     "babel-node": "babel-node --stage 0 $SCRIPT",
     "test": "JASMINE_CONFIG_PATH=jasmine.json SCRIPT=node_modules/.bin/jasmine npm run babel-node",
-    "lint": "eslint public"
+    "lint": "eslint public views db"
   },
   "jspm": {
     "directories": {

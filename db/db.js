@@ -6,8 +6,7 @@ PouchDB.plugin(upsert);
 
 const {DB,NODE_ENV} = process.env;
 
-let isDev = NODE_ENV === 'development';
-let options = isDev ? {db:leveldown} : {};
+let options = NODE_ENV === 'development' ? {db: leveldown} : {};
 
 console.log(`Using db at ${DB}`);
 

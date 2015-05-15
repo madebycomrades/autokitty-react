@@ -4,4 +4,4 @@ export default {
       emit(doc._id,doc);
     }
   }).toString()
-}
+};
