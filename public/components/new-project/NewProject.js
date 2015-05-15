@@ -4,11 +4,11 @@ import {getRouter} from '../../router';
 
 export default class NewProject extends React.Component {
 
-  state = {title: null}
+  state = {title: null};
 
   change = e => {
     this.setState({title: e.target.value});
-  }
+  };
 
   submit = e => {
     e.preventDefault();
@@ -16,7 +16,7 @@ export default class NewProject extends React.Component {
     let router = getRouter();
     projectActions.newProject({title: this.state.title})
       .then(response => router.transitionTo('project',{projectId: response._id}));
-  }
+  };
 
   render () {
     var title = this.state.title;

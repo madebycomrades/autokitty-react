@@ -17,7 +17,7 @@
     "db:fixtures": "SCRIPT=db/scripts/fixtures.js npm run babel-node",
     "db:design-doc": "SCRIPT=db/scripts/design-doc.js npm run babel-node",
     "babel-node": "babel-node --stage 0 $SCRIPT",
-    "test": "JASMINE_CONFIG_PATH=jasmine.json SCRIPT=test.js npm run babel-node",
+    "test": "SCRIPT=test.js npm run babel-node",
     "lint": "eslint test.js index.js public views db jasmine-helpers"
   },
   "jspm": {

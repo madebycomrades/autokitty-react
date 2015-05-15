@@ -7,7 +7,7 @@ let projectResourceUri = `${apiPath()}/project`;
 
 export default class ProjectList extends React.Component {
 
-  state = {projects: []}
+  state = {projects: []};
 
   componentDidMount () {
     fetch(projectResourceUri)

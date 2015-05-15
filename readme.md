@@ -2,7 +2,7 @@
 
 ## Tech
 
-- ES6 (via Babel)
+- ES6 (Babel)
 - Koa server
 - PouchDB
 - Isomorphic React + Flux

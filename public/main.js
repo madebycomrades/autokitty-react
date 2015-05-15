@@ -16,9 +16,7 @@ let store = flux.getStore('project');
 
 let router = createRouter(Router.HistoryLocation);
 
-/*eslint-disable */
 router.run(async (Root,state) => {
-/*eslint-enable */
 
   let projectId = state.params.projectId;
 
