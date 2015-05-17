@@ -1,12 +1,13 @@
 {
   "name":"autokitty-react",
-  "description": "app.json configures the Heroku PR apps only",
   "scripts":{
-    "postdeploy":"npm run jspm:install && npm run local:db:init && npm start"
+    "postdeploy": "npm run local:db:init"
   },
   "env":{
     "DB":".db/autokitty",
-    "NODE_ENV":"production",
+    "NODE_ENV": {
+      "required": true
+    },
     "JSPM_GITHUB_AUTH_TOKEN": {
       "required": true
     }
