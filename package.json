@@ -6,7 +6,6 @@
     "devdb": ".db/autokitty"
   },
   "scripts": {
-    "postinstall": "jspm install",
     "start": "npm run bundle && npm run server",
     "dev:start": "NODE_ENV=development PORT=3000 DB=$npm_package_config_devdb npm run server",
     "dev:start:prod": "NODE_ENV=production PORT=3000 DB=$npm_package_config_devdb npm start",
