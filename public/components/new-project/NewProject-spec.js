@@ -9,8 +9,15 @@ class ProjectListMock extends React.Component {
   }
 }
 
+class ButtonMock extends React.Component {
+  render () {
+    return <div/>;
+  }
+}
+
 let NewProject = proxyquire('./NewProject',{
   '../project-list/ProjectList': ProjectListMock,
+  '../button/Button': ButtonMock,
   '../../router': routerMock
 });
 
@@ -25,7 +32,7 @@ describe('NewProject',() => {
   });
 
   it('should render a button',() => {
-    let button = findRenderedDOMComponentWithTag(newProject,'button');
+    let button = findRenderedComponentWithType(newProject,ButtonMock);
     expect(button).toBeDefined();
   });
 

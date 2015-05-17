@@ -4,10 +4,18 @@ import leveldown from 'leveldown';
 
 PouchDB.plugin(upsert);
 
-const {DB,NODE_ENV} = process.env;
+const {DB} = process.env;
 
-let options = NODE_ENV === 'development' ? {db: leveldown} : {};
+let options = {};
+let type;
 
-console.log(`Using db at ${DB}`);
+if (DB.startsWith('http')) {
+  type = 'remote';
+} else {
+  Object.assign(options,{db: leveldown});
+  type = 'local';
+}
+
+console.log(`Using ${type} DB at ${DB}`);
 
 export default new PouchDB(DB,options);

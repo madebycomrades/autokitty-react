@@ -27,7 +27,7 @@
     "quotes": [2,"single"],
     "comma-spacing": [2,{"before": false,"after": false}],
     "no-underscore-dangle": 0,
-    "new-cap": [2,{"capIsNewExceptions":["Record"]}],
+    "new-cap": [2,{"capIsNewExceptions":["Record","Enhancer"]}],
     "curly": 0,
     "generator-star-spacing": [2,"both"],
     "space-before-function-paren": [2,"always"],

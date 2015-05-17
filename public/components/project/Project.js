@@ -1,6 +1,15 @@
 import React from 'react';
+import ProjectRecord from '../../records/ProjectRecord';
 
 export default class Project extends React.Component {
+
+  static propTypes = {
+    project: React.PropTypes.instanceOf(ProjectRecord)
+  };
+
+  shouldComponentUpdate (nextProps) {
+    return nextProps.project !== this.props.project;
+  }
 
   render () {
     return (
