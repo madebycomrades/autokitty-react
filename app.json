@@ -2,7 +2,7 @@
   "name":"autokitty-react",
   "description": "app.json configures the Heroku PR apps only",
   "scripts":{
-    "postdeploy":"npm run jspm:install && npm run local:db:init"
+    "postdeploy":"npm run jspm:install && npm run local:db:init && npm start"
   },
   "env":{
     "DB":".db/autokitty",
