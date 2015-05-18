@@ -10,6 +10,9 @@
     },
     "JSPM_GITHUB_AUTH_TOKEN": {
       "required": true
+    },
+    "IS_REMOTE_BUILD": {
+      "required": true
     }
   },
   "addons":[]
