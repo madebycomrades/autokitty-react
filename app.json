@@ -1,11 +1,19 @@
 {
   "name":"autokitty-react",
   "scripts":{
-    "postdeploy":"npm run jspm:install && npm run local:db:init"
+    "postdeploy": "npm run local:db:init"
   },
   "env":{
     "DB":".db/autokitty",
-    "NODE_ENV":"production"
+    "NODE_ENV": {
+      "required": true
+    },
+    "JSPM_GITHUB_AUTH_TOKEN": {
+      "required": true
+    },
+    "IS_REMOTE_BUILD": {
+      "required": true
+    }
   },
   "addons":[]
 }

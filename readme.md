@@ -16,7 +16,8 @@
 
 ```sh
 npm i
-npm run dev:db:init
+node_modules/.bin/jspm install
+npm run local:db:init
 npm run watch
 ```
 
@@ -85,7 +86,7 @@ The development database is created locally in the `.db/` folder.
 To freshly create (or recreate) the development database, insert its design document and populate it with fixture data run,
 
 ```sh
-$ npm run dev:db:init
+$ npm run local:db:init
 ```
 
 ### Production

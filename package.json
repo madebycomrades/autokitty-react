@@ -3,17 +3,16 @@
   "version": "0.0.1",
   "description": "This kitty sorts out your complicated group expenses",
   "config": {
-    "devdb": ".db/autokitty"
+    "localdb": ".db/autokitty"
   },
   "scripts": {
-    "start": "npm run bundle && npm run server",
-    "dev:start": "NODE_ENV=development PORT=3000 DB=$npm_package_config_devdb npm run server",
-    "dev:start:prod": "NODE_ENV=production PORT=3000 DB=$npm_package_config_devdb npm start",
-    "server": "SCRIPT=index.js npm run babel-node",
+    "postinstall": "scripts/postinstall.sh",
+    "start": "SCRIPT=index.js npm run babel-node",
+    "dev:start": "NODE_ENV=development PORT=3000 DB=$npm_package_config_localdb npm run server",
     "watch": "nodemon --ext js,json,hbs --exec 'npm run dev:start'",
     "bundle": "jspm bundle-sfx main public/main.bundle.js",
-    "dev:db:init": "npm run dev:db:rm; export DB=$npm_package_config_devdb; export NODE_ENV=development; mkdir -p $DB; npm run db:design-doc && npm run db:fixtures",
-    "dev:db:rm": "rm -rf $npm_package_config_devdb*/ > /dev/null 2>&1",
+    "local:db:init": "npm run local:db:rm; export DB=$npm_package_config_localdb; mkdir -p $DB; npm run db:design-doc && npm run db:fixtures",
+    "local:db:rm": "rm -rf $npm_package_config_localdb*/ > /dev/null 2>&1",
     "db:fixtures": "SCRIPT=db/scripts/fixtures.js npm run babel-node",
     "db:design-doc": "SCRIPT=db/scripts/design-doc.js npm run babel-node",
     "babel-node": "babel-node --stage 0 $SCRIPT",
@@ -56,7 +55,7 @@
     "jasmine": "^2.3.1",
     "jasmine-spec-reporter": "^2.2.1",
     "jsdom": "^5.4.1",
-    "jspm": "^0.15.5",
+    "jspm": "jspm/jspm-cli#master",
     "koa": "^0.19.1",
     "koa-route": "^2.4.1",
     "koa-static": "^1.4.9",
