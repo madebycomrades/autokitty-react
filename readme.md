@@ -16,7 +16,6 @@
 
 ```sh
 npm i
-node_modules/.bin/jspm install
 npm run local:db:init
 npm run watch
 ```
@@ -27,7 +26,7 @@ This project uses jspm for client packages, and npm for server packages. For pac
 
 In development mode jspm handles module loading and ES6 transpiling in real time in the browser, therefore no compilation step is required. When running in production mode the app is bundled into a single pre-compiled self executing file.
 
-To install a frontend package use the local jspm,
+To install a new frontend package use the local jspm,
 
 ```sh
 $ node_modules/.bin/jspm install npm:react
@@ -51,10 +50,10 @@ $ npm run dev:start
 
 ### Production
 
-Starting the server in production mode will first bundle the client into a single self executing file using jspm. The server will expect a number of env vars to be present, and you can supply these manually to simulate locally running the app in production mode,
+When running in production mode the app will first be bundled into a single pre-compiled self-executing file using jspm. You can simulate running the production app locally with,
 
 ```sh
-$ NODE_ENV=production PORT=3000 DB=.db/autokitty npm start
+$ npm run localprod:start
 ```
 
 > TODO: Where will we deploy the live app to? Dokku? Heroku?
@@ -70,7 +69,7 @@ $ npm run -s lint
 Run the unit tests with,
 
 ```sh
-$ npm t
+$ npm -s t
 ```
 
 > The unit tests use Jasmine. For tests that interact with the DOM `window` and `document` globals are provided by jsdom without the need for a browser, headless or otherwise. Module imports can be mocked in test subjects using proxyquire.
