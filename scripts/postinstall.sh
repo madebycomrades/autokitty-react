@@ -2,10 +2,16 @@
 
 set -e
 
-if [ -z "$IS_REMOTE_BUILD" ]; then
-    exit 0
+if [ $JSPM_GITHUB_AUTH_TOKEN ]; then
+  jspm config registries.github.auth $JSPM_GITHUB_AUTH_TOKEN
 fi
 
-jspm config registries.github.auth $JSPM_GITHUB_AUTH_TOKEN
 jspm install
-npm run bundle
+
+if [ $JSPM_BUNDLE ]; then
+  npm run bundle
+fi
+
+if [ $LOCAL_DB_INIT ]; then
+  npm run local:db:init
+fi
