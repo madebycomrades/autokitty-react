@@ -32,6 +32,14 @@ To install a new frontend package use the local jspm,
 $ node_modules/.bin/jspm install npm:react
 ```
 
+## CI/Deployment
+
+Raising a PR on GitHub will trigger an automatic deploy of the latest commit in that PR to a temporary Heroku app for QA/review purposes.
+
+Any commit that passes CI on the master branch will trigger an automatic deploy to the permanent Heroku app at http://autokitty.herokuapp.com.
+
+CI is handled by Codeship here https://codeship.com/projects/80431.
+
 ## Server
 
 ### Development
