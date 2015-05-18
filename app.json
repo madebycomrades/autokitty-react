@@ -1,11 +1,18 @@
 {
   "name":"autokitty-react",
-  "scripts":{
-    "postdeploy":"npm run jspm:install && npm run local:db:init"
-  },
+  "description": "app.json configures the PR apps",
   "env":{
     "DB":".db/autokitty",
-    "NODE_ENV":"production"
+    "LOCAL_DB_INIT": "true",
+    "NODE_ENV": {
+      "required": true
+    },
+    "JSPM_GITHUB_AUTH_TOKEN": {
+      "required": true
+    },
+    "JSPM_BUNDLE": {
+      "required": true
+    }
   },
   "addons":[]
 }
