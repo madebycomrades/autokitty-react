@@ -6,9 +6,9 @@
     "localdb": ".db/autokitty"
   },
   "scripts": {
-    "prod:start": "jspm config registries.github.auth $JSPM_GITHUB_AUTH_TOKEN && jspm install && npm run bundle && npm run server",
+    "postinstall": "scripts/postinstall.sh",
+    "start": "SCRIPT=index.js npm run babel-node",
     "dev:start": "NODE_ENV=development PORT=3000 DB=$npm_package_config_localdb npm run server",
-    "server": "SCRIPT=index.js npm run babel-node",
     "watch": "nodemon --ext js,json,hbs --exec 'npm run dev:start'",
     "bundle": "jspm bundle-sfx main public/main.bundle.js",
     "local:db:init": "npm run local:db:rm; export DB=$npm_package_config_localdb; mkdir -p $DB; npm run db:design-doc && npm run db:fixtures",
