@@ -1,5 +1,20 @@
 # AutoKitty
 
+> This kitty sorts out your complicated group expenses.
+
+## Overview
+
+The plan is for AutoKitty to be an app that lets users create collaborative projects to manage complicated group expenses. Imagine you've gone on holiday with friends and you've all spent a lot of money on group expenses. Some people are involved in some expenses, while others are exempt (perhaps they don't drink alchohol for example, or they shouldn't contribute to petrol becomes they travelled by train).
+
+Resolving this efficiently is tricky to do by hand, and impossible for large groups. AutoKitty will help by computing the smallest number of payments between members in order to settle all debts.
+
+:information_source: There are many other apps that do similar things. This project is mainly a learning exercise in new tech, but hopefully we can differentiate on simplicity and UX.
+
+### Resources
+
+- Mock ups https://moqups.com/jedrichards@gmail.com/hHRoxPtf
+- A naive implementation of the settling up algorithm https://gist.github.com/jedrichards/22fa15dd89fe34c3eec1
+
 ## Tech
 
 - ES6 (Babel)
