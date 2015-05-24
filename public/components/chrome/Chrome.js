@@ -17,7 +17,7 @@ let styles = {
   }
 };
 
-export default Radium.Enhancer(class Chrome extends React.Component {
+class Chrome extends React.Component {
   render () {
     let flux = this.props.flux;
     return (
@@ -31,4 +31,6 @@ export default Radium.Enhancer(class Chrome extends React.Component {
       </div>
     );
   }
-});
+}
+
+export default Radium.Enhancer(Chrome);

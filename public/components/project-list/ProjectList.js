@@ -1,6 +1,7 @@
 import React from 'react';
 import Router from 'react-router';
 import {apiPath} from '../../utils';
+import fetch from 'isomorphic-fetch';
 
 let {Link} = Router;
 let projectResourceUri = `${apiPath()}/project`;

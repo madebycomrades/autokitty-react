@@ -22,14 +22,9 @@ export default class ProjectStore extends Store {
   constructor ({projectActions}) {
     super();
     this.register(projectActions.fetchProject,this.handleFetchProject);
-    this.register(projectActions.newProject,this.handleNewProject);
   }
 
   handleFetchProject (project) {
-    this.setState(project);
-  }
-
-  handleNewProject (project) {
     this.setState(project);
   }
 

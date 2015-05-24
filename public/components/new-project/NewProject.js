@@ -1,9 +1,13 @@
 import React from 'react';
 import ProjectList from '../project-list/ProjectList';
-import {getRouter} from '../../router';
 import Button from '../button/Button';
+import Flux from '../../flux/Flux';
 
 export default class NewProject extends React.Component {
+
+  static propTypes = {
+    flux: React.PropTypes.instanceOf(Flux)
+  };
 
   state = {title: null};
 
@@ -13,10 +17,9 @@ export default class NewProject extends React.Component {
 
   submit = e => {
     e.preventDefault();
-    let projectActions = this.props.flux.getActions('project');
-    let router = getRouter();
-    projectActions.newProject({title: this.state.title})
-      .then(response => router.transitionTo('project',{projectId: response._id}));
+    this.props.flux
+      .getActions('project')
+      .newProject({title: this.state.title});
   };
 
   render () {

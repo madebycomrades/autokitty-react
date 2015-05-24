@@ -21,6 +21,12 @@ let styles = {
     ':hover': {
       backgroundColor: '#0f0'
     }
+  },
+  baseDanger: {
+    backgroundColor: '#f00',
+    ':hover': {
+      backgroundColor: '#000'
+    }
   }
 };
 
@@ -29,7 +35,8 @@ export default Radium.Enhancer(class Chrome extends React.Component {
     return (
       <a {...this.props} style={[
         styles.base,
-        this.props.primary && styles.basePrimary
+        this.props.primary && styles.basePrimary,
+        this.props.danger && styles.baseDanger
       ]}>
         {this.props.children}
       </a>
