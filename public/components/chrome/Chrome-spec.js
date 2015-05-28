@@ -1,5 +1,6 @@
 import proxyquire from 'proxyquire';
 import React from 'react/addons';
+import Mock from '../mock/Mock';
 
 let {
   renderIntoDocument: render,
@@ -7,17 +8,8 @@ let {
   findRenderedComponentWithType: byType
 } = React.addons.TestUtils;
 
-class LinkMock extends React.Component {
-  render () {
-    return <div to={this.props.to}>{this.props.children}</div>;
-  }
-}
-
-class RouteHandlerMock extends React.Component {
-  render () {
-    return <div flux={this.props.flux}/>;
-  }
-}
+class LinkMock extends Mock {}
+class RouteHandlerMock extends Mock {}
 
 let Chrome = proxyquire('./Chrome',{
   'react-router': {

@@ -1,9 +1,7 @@
-import immutable from 'immutable';
+import {Record,List} from 'immutable';
 import slug from 'to-slug-case';
 import shortid from 'shortid';
 import MemberRecord from './MemberRecord';
-
-let {Record,List} = immutable;
 
 let defaults = {
   _id: undefined,

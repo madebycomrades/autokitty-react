@@ -1,10 +1,7 @@
-import React from 'react';
-import Router from 'react-router';
+import React,{Component} from 'react';
+import {Link} from 'react-router';
 
-let {Link} = Router;
-
-export default class Members extends React.Component {
-
+export default class Members extends Component {
   render () {
     let members = this.props.members;
     return (

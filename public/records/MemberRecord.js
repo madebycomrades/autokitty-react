@@ -1,8 +1,6 @@
-import immutable from 'immutable';
+import {Record,List} from 'immutable';
 import slug from 'to-slug-case';
 import ExpenseRecord from './ExpenseRecord';
-
-let {Record,List} = immutable;
 
 let defaults = {
   name: undefined,
