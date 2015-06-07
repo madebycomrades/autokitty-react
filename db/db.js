@@ -6,7 +6,7 @@ import ProjectRecord from '../public/records/ProjectRecord';
 
 PouchDB.plugin(upsert);
 
-const db = new PouchDB('autokitty',{db:memdown});
+const db = new PouchDB('autokitty',{db: memdown});
 
 const designDoc = {
   views: {
