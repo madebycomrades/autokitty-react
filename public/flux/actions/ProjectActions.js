@@ -1,5 +1,7 @@
 import {Actions} from 'flummox';
 import {apiPath} from '../../utils';
+import fetch from 'isomorphic-fetch';
+import {get as getRouter} from '../../routing/router';
 
 let projectResourceUri = `${apiPath()}/project`;
 
@@ -12,7 +14,7 @@ export default class ProjectActions extends Actions {
     if (response.status === 200) {
       return await response.json();
     } else {
-      return Promise.reject(new Error(`${response.status} error fetching project ${id}`));
+      return Promise.reject(new Error(`${response.status} GET project ${id}`));
     }
   }
 
@@ -23,10 +25,13 @@ export default class ProjectActions extends Actions {
       body: JSON.stringify(project)
     });
 
-    if (response.status === 201) {
-      return await response.json();
-    } else {
-      return Promise.reject(new Error(`${response.status} error creating project ${project.title}`));
-    }
+    if (response.status !== 201)
+      return Promise.reject(new Error(`${response.status} POST project`));
+
+    response.json().then(json => {
+      console.log(json);
+      let router = getRouter();
+      router.transitionTo('project',{projectId: json.id});
+    });
   }
 }

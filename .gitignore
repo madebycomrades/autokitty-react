@@ -1,11 +1,3 @@
 npm-debug.log*
-
 /node_modules
-
-/public/jspm_packages
 /public/main.bundle.js
-/public/main.bundle.js.map
-/public/main.bundle.css
-/public/main.bundle.css.map
-
-/.db

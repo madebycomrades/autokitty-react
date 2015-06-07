@@ -1,7 +1,5 @@
-import immutable from 'immutable';
+import {Record,Set} from 'immutable';
 import slug from 'to-slug-case';
-
-let {Record,Set} = immutable;
 
 let defaults = {
   title: undefined,

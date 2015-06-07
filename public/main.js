@@ -2,19 +2,15 @@ import Flux from './flux/Flux';
 import FluxComponent from 'flummox/component';
 import React from 'react';
 import Router from 'react-router';
-import {createRouter} from './router';
-import 'isomorphic-fetch';
+import {create as createRouter} from './routing/router';
+import routes from './routing/routes';
 
-import 'normalize.css/normalize.css!';
-import './base.css!';
-
+let router = createRouter(routes,Router.HistoryLocation);
 let flux = new Flux();
-flux.deserialize(stateString);
-
 let actions = flux.getActions('project');
 let store = flux.getStore('project');
 
-let router = createRouter(Router.HistoryLocation);
+flux.deserialize(stateString);
 
 router.run(async (Root,state) => {
 

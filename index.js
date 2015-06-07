@@ -1,7 +1,5 @@
 import koa from 'koa';
 import statics from 'koa-static';
-import 'isomorphic-fetch';
-
 import appView from './views/app/app';
 import projectGetView from './views/api/project/get';
 import projectCollectionView from './views/api/project/collection';

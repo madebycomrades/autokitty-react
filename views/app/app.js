@@ -3,18 +3,20 @@ import FluxComponent from 'flummox/component';
 import Handlebars from 'handlebars';
 import {readFileSync} from 'fs';
 import React from 'react';
-import {createRouter} from '../../public/router';
+import {create as createRouter} from '../../public/routing/router';
+import routes from '../../public/routing/routes';
 
-const NODE_ENV = process.env.NODE_ENV;
+const {NODE_ENV} = process.env;
 
 let tpl = Handlebars.compile(readFileSync(`${__dirname}/app.hbs`,{encoding: 'utf8'}));
 let isDev = NODE_ENV === 'development';
 
 export default function * () {
 
-  let router = createRouter(this.url);
+  let router = createRouter(routes,this.url);
 
   let flux = new Flux();
+
   let projectActions = flux.getActions('project');
 
   let {Root,state} = yield new Promise(resolve => {

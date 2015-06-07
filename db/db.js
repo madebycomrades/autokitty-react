@@ -1,21 +1,29 @@
 import upsert from 'pouchdb-upsert';
 import PouchDB from 'pouchdb';
-import leveldown from 'leveldown';
+import memdown from 'memdown';
+import projects from './fixtures/projects';
+import ProjectRecord from '../public/records/ProjectRecord';
 
 PouchDB.plugin(upsert);
 
-const {DB} = process.env;
+const db = new PouchDB('autokitty',{db: memdown});
 
-let options = {};
-let type;
+const designDoc = {
+  views: {
+    projects: {
+      map: (doc => {
+        if (doc.type === 'project') {
+          emit(doc._id,doc);
+        }
+      }).toString()
+    }
+  }
+};
 
-if (DB.startsWith('http')) {
-  type = 'remote';
-} else {
-  Object.assign(options,{db: leveldown});
-  type = 'local';
-}
+db.upsert('_design/autokitty',() => designDoc)
+  .catch(error => console.log(error));
 
-console.log(`Using ${type} DB at ${DB}`);
+db.bulkDocs(projects.map(project => new ProjectRecord(project).toJS()))
+  .catch(error => console.log(error));
 
-export default new PouchDB(DB,options);
+export default db;

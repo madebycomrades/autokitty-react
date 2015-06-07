@@ -1,11 +1,11 @@
-import React from 'react';
-import Router from 'react-router';
+import React,{Component} from 'react';
+import {Link} from 'react-router';
 import {apiPath} from '../../utils';
+import fetch from 'isomorphic-fetch';
 
-let {Link} = Router;
 let projectResourceUri = `${apiPath()}/project`;
 
-export default class ProjectList extends React.Component {
+export default class ProjectList extends Component {
 
   state = {projects: []};
 
