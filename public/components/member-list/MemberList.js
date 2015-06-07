@@ -1,5 +1,4 @@
 import React,{Component} from 'react';
-import {Link} from 'react-router';
 
 export default class Members extends Component {
   render () {
@@ -9,7 +8,7 @@ export default class Members extends Component {
         {members.map(member => {
           return (
             <li key={member.slug}>
-              <Link to="member" params={{memberSlug: member.slug}}>{member.name}</Link>
+              {member.name}
             </li>
           );
         })}
