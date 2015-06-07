@@ -6,48 +6,24 @@
     "localdb": ".db/autokitty"
   },
   "scripts": {
-    "postinstall": "scripts/postinstall.sh",
-    "start": "SCRIPT=index.js npm run babel-node",
-    "dev:start": "NODE_ENV=development PORT=3000 DB=$npm_package_config_localdb npm start",
-    "localprod:start": "npm run bundle && NODE_ENV=production PORT=3000 DB=$npm_package_config_localdb npm start",
-    "watch": "nodemon --ext js,json,hbs --exec 'npm run dev:start'",
-    "bundle": "jspm bundle-sfx main public/main.bundle.js",
-    "local:db:init": "npm run local:db:rm; export DB=$npm_package_config_localdb; mkdir -p $DB; npm run db:design-doc && npm run db:fixtures",
-    "local:db:rm": "rm -rf $npm_package_config_localdb*/ > /dev/null 2>&1",
-    "db:fixtures": "SCRIPT=db/scripts/fixtures.js npm run babel-node",
-    "db:design-doc": "SCRIPT=db/scripts/design-doc.js npm run babel-node",
-    "babel-node": "babel-node --stage 0 $SCRIPT",
-    "test": "SCRIPT=test.js npm run babel-node",
-    "lint": "eslint test.js index.js public views db jasmine-helpers"
-  },
-  "jspm": {
-    "directories": {
-      "baseURL": "public"
-    },
-    "dependencies": {
-      "css": "github:systemjs/plugin-css@^0.1.10",
-      "flummox": "npm:flummox@^4.0.0-alpha",
-      "immutable": "npm:immutable@^3.7.2",
-      "isomorphic-fetch": "npm:isomorphic-fetch@^2.0.2",
-      "normalize.css": "github:necolas/normalize.css@^3.0.3",
-      "radium": "npm:radium@^0.12.0",
-      "react": "npm:react@^0.13.2",
-      "react-router": "npm:react-router@^0.13.3",
-      "shortid": "npm:shortid@^2.2.2",
-      "to-slug-case": "npm:to-slug-case@^0.1.2"
-    },
-    "devDependencies": {
-      "babel": "npm:babel-core@^5.1.13",
-      "babel-runtime": "npm:babel-runtime@^5.1.13",
-      "core-js": "npm:core-js@^0.9.4"
-    }
+    "postinstall": "npm run bundle",
+    "start": "babel-node --stage 0 index.js",
+    "dev:start": "NODE_ENV=development PORT=3000 npm start",
+    "watch:server": "nodemon --watch index.js --watch views --watch db --ext js,json,hbs --exec 'npm run dev:start'",
+    "watch:client": "WATCHIFY=true babel-node --stage 0 browserify.js",
+    "bundle": "babel-node --stage 0 browserify.js",
+    "test": "babel-node --stage 0 test.js",
+    "lint": "eslint test.js index.js browserify.js public views db jasmine-helpers"
   },
   "dependencies": {
-    "babel": "^5.1.13",
-    "babel-core": "^5.3.3",
-    "babel-eslint": "^3.1.3",
-    "co-body": "^1.2.0",
-    "eslint": "^0.21.0",
+    "babel": "^5.5.4",
+    "babel-core": "^5.5.4",
+    "babel-eslint": "^3.1.9",
+    "babel-runtime": "^5.5.4",
+    "babelify": "^6.1.2",
+    "browserify": "^10.2.4",
+    "co-body": "^2.0.0",
+    "eslint": "^0.22.1",
     "eslint-plugin-react": "^2.3.0",
     "flummox": "^4.0.0-alpha",
     "handlebars": "^3.0.2",
@@ -56,24 +32,33 @@
     "jasmine": "^2.3.1",
     "jasmine-spec-reporter": "^2.2.1",
     "jsdom": "^5.4.1",
-    "jspm": "^0.15.6",
-    "koa": "^0.19.1",
+    "koa": "^0.21.0",
     "koa-route": "^2.4.1",
     "koa-static": "^1.4.9",
-    "leveldown": "^1.0.6",
+    "memdown": "^1.0.0",
     "nodemon": "^1.3.7",
     "pouchdb": "^3.4.0",
     "pouchdb-upsert": "^1.1.1",
     "proxyquire": "^1.4.0",
-    "radium": "^0.12.0",
     "react": "^0.13.2",
     "react-router": "^0.13.3",
     "shortid": "^2.2.2",
-    "to-slug-case": "^0.1.2"
+    "to-slug-case": "^0.1.2",
+    "watchify": "^3.2.2"
   },
-  "registry": "jspm",
   "engines": {
     "iojs": "2.0.0",
     "npm": "2.9.0"
+  },
+  "jspm": {
+    "directories": {
+      "baseURL": "public"
+    },
+    "dependencies": {},
+    "devDependencies": {
+      "babel": "npm:babel-core@^5.1.13",
+      "babel-runtime": "npm:babel-runtime@^5.1.13",
+      "core-js": "npm:core-js@^0.9.4"
+    }
   }
 }

@@ -1,9 +1,9 @@
-import React from 'react';
+import React,{Component} from 'react';
 import ProjectList from '../project-list/ProjectList';
 import Button from '../button/Button';
 import Flux from '../../flux/Flux';
 
-export default class NewProject extends React.Component {
+export default class NewProject extends Component {
 
   static propTypes = {
     flux: React.PropTypes.instanceOf(Flux)

@@ -1,21 +1,19 @@
-import React from 'react';
+import React,{Component} from 'react';
 import ProjectRecord from '../../records/ProjectRecord';
+import MemberList from '../member-list/MemberList';
 
-export default class Project extends React.Component {
+export default class Project extends Component {
 
   static propTypes = {
     project: React.PropTypes.instanceOf(ProjectRecord)
   };
 
-  shouldComponentUpdate (nextProps) {
-    return nextProps.project !== this.props.project;
-  }
-
   render () {
+    let members = this.props.project.get('members');
     return (
       <div>
-        <p>ID: {this.props.project.get('_id')}</p>
-        <p>Project: {this.props.project.get('title')}</p>
+        <h2>{this.props.project.get('title')}</h2>
+        <MemberList members={members}/>
       </div>
     );
   }

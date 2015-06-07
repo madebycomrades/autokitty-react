@@ -1,45 +1,11 @@
-import React from 'react';
-import Radium from 'radium';
+import React,{Component} from 'react';
 
-let styles = {
-  base: {
-    backgroundColor: '#000',
-    borderRadius: '3',
-    color: '#fff',
-    cursor: 'pointer',
-    display: 'inline-block',
-    padding: '5px 5px',
-    textAlign: 'center',
-    textDecoration: 'none',
-    verticalAlign: 'middle',
-    ':hover': {
-      backgroundColor: '#ccc'
-    }
-  },
-  basePrimary: {
-    backgroundColor: '#00f',
-    ':hover': {
-      backgroundColor: '#0f0'
-    }
-  },
-  baseDanger: {
-    backgroundColor: '#f00',
-    ':hover': {
-      backgroundColor: '#000'
-    }
-  }
-};
-
-export default Radium.Enhancer(class Chrome extends React.Component {
+export default class Chrome extends Component {
   render () {
     return (
-      <a {...this.props} style={[
-        styles.base,
-        this.props.primary && styles.basePrimary,
-        this.props.danger && styles.baseDanger
-      ]}>
+      <a {...this.props}>
         {this.props.children}
       </a>
     );
   }
-});
+}

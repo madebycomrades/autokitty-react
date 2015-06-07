@@ -1,5 +1,5 @@
 import proxyquire from 'proxyquire';
-import React from 'react/addons';
+import React,{Component} from 'react/addons';
 
 let {
   renderIntoDocument: render,
@@ -7,15 +7,15 @@ let {
   findRenderedComponentWithType: byType
 } = React.addons.TestUtils;
 
-class LinkMock extends React.Component {
+class LinkMock extends Component {
   render () {
-    return <div to={this.props.to}>{this.props.children}</div>;
+    return <div>{this.props.children}</div>;
   }
 }
 
-class RouteHandlerMock extends React.Component {
+class RouteHandlerMock extends Component {
   render () {
-    return <div flux={this.props.flux}/>;
+    return <div/>;
   }
 }
 

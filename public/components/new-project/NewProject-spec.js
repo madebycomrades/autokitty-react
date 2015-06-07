@@ -1,5 +1,5 @@
 import proxyquire from 'proxyquire';
-import React from 'react/addons';
+import React,{Component} from 'react/addons';
 import FluxMock from '../../flux/Flux-mock';
 
 let {
@@ -9,13 +9,13 @@ let {
   Simulate
 } = React.addons.TestUtils;
 
-class ProjectListMock extends React.Component {
+class ProjectListMock extends Component {
   render () {
     return <div/>;
   }
 }
 
-class ButtonMock extends React.Component {
+class ButtonMock extends Component {
   render () {
     return <div/>;
   }

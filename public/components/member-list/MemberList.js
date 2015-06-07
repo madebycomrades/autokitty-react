@@ -1,10 +1,6 @@
-import React from 'react';
-import Router from 'react-router';
+import React,{Component} from 'react';
 
-let {Link} = Router;
-
-export default class Members extends React.Component {
-
+export default class Members extends Component {
   render () {
     let members = this.props.members;
     return (
@@ -12,7 +8,7 @@ export default class Members extends React.Component {
         {members.map(member => {
           return (
             <li key={member.slug}>
-              <Link to="member" params={{memberSlug: member.slug}}>{member.name}</Link>
+              {member.name}
             </li>
           );
         })}

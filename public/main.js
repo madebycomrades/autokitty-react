@@ -4,8 +4,6 @@ import React from 'react';
 import Router from 'react-router';
 import {create as createRouter} from './routing/router';
 import routes from './routing/routes';
-import 'normalize.css/normalize.css!';
-import './base.css!';
 
 let router = createRouter(routes,Router.HistoryLocation);
 let flux = new Flux();
