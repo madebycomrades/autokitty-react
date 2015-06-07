@@ -1,6 +1,22 @@
 export default [
   {
-    title: 'A jolly trip'
+    title: 'A jolly trip',
+    members: [
+      {
+        name: 'Person A',
+        expenses: [
+          {
+            title: 'Rizla',
+            value: 0.80,
+            participants: ['Person-A']
+          }
+        ]
+      },
+      {
+        name: 'Person B',
+        expenses: []
+      }
+    ]
   },
   {
     title: 'Cornwall weekend',

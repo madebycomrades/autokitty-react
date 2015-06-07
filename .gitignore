@@ -1,7 +1,3 @@
 npm-debug.log*
-
 /node_modules
-
 /public/main.bundle.js
-
-/.db

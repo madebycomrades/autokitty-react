@@ -19,11 +19,7 @@ if (WATCHIFY) b = watchify(b);
 
 b.transform(babelify.configure({
   stage: 0,
-  optional: [
-    'runtime',
-    'asyncToGenerator',
-    'es7.classProperties'
-  ]
+  optional: ['runtime']
 }));
 
 b.on('update',() => bundle());

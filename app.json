@@ -1,18 +1,6 @@
 {
   "name":"autokitty-react",
   "description": "app.json configures the PR apps",
-  "env":{
-    "DB":".db/autokitty",
-    "LOCAL_DB_INIT": "true",
-    "NODE_ENV": {
-      "required": true
-    },
-    "JSPM_GITHUB_AUTH_TOKEN": {
-      "required": true
-    },
-    "JSPM_BUNDLE": {
-      "required": true
-    }
-  },
+  "env":{},
   "addons":[]
 }
