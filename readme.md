@@ -21,7 +21,7 @@ Resolving this efficiently is tricky to do by hand, and impossible for large gro
 - Koa server
 - PouchDB
 - Isomorphic React + Flux
-- npm/jspm
+- Browserify
 
 ## System requirements
 
@@ -31,44 +31,29 @@ Resolving this efficiently is tricky to do by hand, and impossible for large gro
 
 ```sh
 npm i
-npm run local:db:init
-npm run watch
-```
-
-## Package managers
-
-This project uses jspm for client packages, and npm for server packages. For packages intended to be used in files executed across both client and server ensure that the packages are installed using both managers and their versions are in sync.
-
-In development mode jspm handles module loading and ES6 transpiling in real time in the browser, therefore no compilation step is required. When running in production mode the app is bundled into a single pre-compiled self executing file.
-
-To install a new frontend package use the local jspm,
-
-```sh
-$ node_modules/.bin/jspm install npm:react
+npm run dev:start
 ```
 
 ## CI/Deployment
 
-Raising a PR on GitHub will trigger an automatic deploy of the latest commit in that PR to a temporary Heroku app for QA/review purposes.
+CI is handled by Codeship here https://codeship.com/projects/80431.
 
 Any commit that passes CI on the master branch will trigger an automatic deploy to the permanent Heroku app at http://autokitty.herokuapp.com.
 
-CI is handled by Codeship here https://codeship.com/projects/80431.
+Additionally, raising a PR on GitHub will trigger an automatic deploy of the latest commit in that PR to a temporary Heroku app for QA/review purposes. PR apps are only deployed once their commit passes CI.
 
-## Server
+## Developing
 
-### Development
-
-Ensure that the development database has been initialised and then,
+Run the server in development mode while watching and restarting,
 
 ```sh
-$ npm run watch
+$ npm run watch:server
 ```
 
-To run the development server without file watching and restarting,
+Bundle the client files while watching and re-bundling,
 
 ```sh
-$ npm run dev:start
+$ npm run watch:client
 ```
 
 ### Production
@@ -81,7 +66,7 @@ $ npm run localprod:start
 
 > TODO: Where will we deploy the live app to? Dokku? Heroku?
 
-## Tests
+## Linting and testing
 
 Lint with,
 
@@ -103,22 +88,8 @@ $ npm -s t
 
 ### Development
 
-The development database is created locally in the `.db/` folder.
-
-To freshly create (or recreate) the development database, insert its design document and populate it with fixture data run,
-
-```sh
-$ npm run local:db:init
-```
+The development database lives in-memory and is recreated each time the app starts.
 
 ### Production
 
 > TODO: How will the production database work? Cloudant?
-
-## Annoyances
-
-- Afaiu for 3rd party modules to be used across both client and server they need to be installed separately in both node_modules and jspm_packages ... maybe Browserify with ES6 transform better at the mo?
-- jspm CSS handling seems quite immature. There is no way to ensure load order of CSS imports, and currently no way to introduce a PostCSS pipeline - so no autoprefixer etc.
-- Otherwise jspm is a great workflow (transparent ES6 usage, no need to build on dev) but it also seems quite ... "elaborate". Its a complex layer that sits on top of npm and seems to be doing a lot, even implementing its own registry of sorts. That said, its very actively maintained.
-- React inline CSS seems quite immature. A fair few libraries to try out, but no library that supports both pseudo selectors (:hover etc) and media queries at the mo.
-- Facebook Jest, the recommended testing lib for React stuff (auto mocking required modules, jsdom etc.) is broken when used with ES6/iojs
