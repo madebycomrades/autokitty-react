@@ -8,7 +8,7 @@ The plan is for AutoKitty to be an app that lets users create collaborative proj
 
 Resolving this efficiently is tricky to do by hand, and impossible for large groups. AutoKitty will help by computing the smallest number of payments between members in order to settle all debts.
 
-:information_source: There are many other apps that do similar things. This project is mainly a learning exercise in new tech, but hopefully we can differentiate on simplicity and UX.
+There are many other apps that do similar things. This project is mainly a learning exercise in new tech, but hopefully we can differentiate on simplicity and UX.
 
 ### Resources
 
@@ -30,19 +30,19 @@ Resolving this efficiently is tricky to do by hand, and impossible for large gro
 ## Quick start
 
 ```sh
-npm i
-npm run dev:start
+$ npm i
+$ npm run dev:start
 ```
 
 ## CI/Deployment
 
 CI is handled by Codeship here https://codeship.com/projects/80431.
 
-Any commit that passes CI on the master branch will trigger an automatic deploy to the permanent Heroku app at http://autokitty.herokuapp.com.
+Any commit that passes CI on the master branch will trigger an automatic deployment to the Heroku app at http://autokitty.herokuapp.com.
 
-Additionally, raising a PR on GitHub will trigger an automatic deploy of the latest commit in that PR to a temporary Heroku app for QA/review purposes. PR apps are only deployed once their commit passes CI.
+Additionally, raising a PR on GitHub will trigger an automatic deployment of the latest commit in that PR to a temporary Heroku app for QA/review purposes. PR apps are only deployed once their commit passes CI.
 
-## Developing
+## Server
 
 Run the server in development mode while watching and restarting,
 
@@ -50,21 +50,13 @@ Run the server in development mode while watching and restarting,
 $ npm run watch:server
 ```
 
+## Client
+
 Bundle the client files while watching and re-bundling,
 
 ```sh
 $ npm run watch:client
 ```
-
-### Production
-
-When running in production mode the app will first be bundled into a single pre-compiled self-executing file using jspm. You can simulate running the production app locally with,
-
-```sh
-$ npm run localprod:start
-```
-
-> TODO: Where will we deploy the live app to? Dokku? Heroku?
 
 ## Linting and testing
 
@@ -80,16 +72,10 @@ Run the unit tests with,
 $ npm -s t
 ```
 
-> The unit tests use Jasmine. For tests that interact with the DOM `window` and `document` globals are provided by jsdom without the need for a browser, headless or otherwise. Module imports can be mocked in test subjects using proxyquire.
-
 ## Database
 
 [PouchDB](http://pouchdb.com) provides a unified CouchDB-based interface to local or remote data stores.
 
-### Development
-
-The development database lives in-memory and is recreated each time the app starts.
-
-### Production
+The development database is local and in-memory, and is recreated each time the app starts.
 
 > TODO: How will the production database work? Cloudant?
