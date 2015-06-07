@@ -11,22 +11,22 @@ var b = browserify({
   entries: ['./public/main.js']
 });
 
+function bundle () {
+  b.bundle().pipe(fs.createWriteStream('./public/main.bundle.js'));
+}
+
 if (WATCHIFY) b = watchify(b);
 
 b.transform(babelify.configure({
   stage: 0,
   optional: [
-    "runtime",
-    "asyncToGenerator",
-    "es7.classProperties"
+    'runtime',
+    'asyncToGenerator',
+    'es7.classProperties'
   ]
 }));
 
 b.on('update',() => bundle());
 b.on('log',msg => console.log(msg));
-
-function bundle () {
-  b.bundle().pipe(fs.createWriteStream('./public/main.bundle.js'));
-}
 
 bundle();
