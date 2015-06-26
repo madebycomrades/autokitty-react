@@ -31,7 +31,7 @@ There are many other apps that do similar things. This project is mainly a learn
 
 ```sh
 $ npm i
-$ npm run dev:start
+$ npm run start:dev
 ```
 
 ## CI/Deployment

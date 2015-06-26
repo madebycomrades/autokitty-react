@@ -1,50 +1,63 @@
 export default [
   {
-    title: 'A jolly trip',
+    title: 'A Jolly Trip',
     members: [
       {
-        name: 'Person A',
+        name: 'Crispin',
         expenses: [
           {
             title: 'Rizla',
-            value: 0.80,
-            participants: ['Person-A']
+            value: 0.80
           }
         ]
       },
       {
-        name: 'Person B',
+        name: 'Giles',
+        expenses: [
+          {
+            title: 'Champaign',
+            value: 236
+          },
+          {
+            title: 'Food Hamper',
+            value: 189
+          }
+        ]
+      },
+      {
+        name: 'Camilla',
         expenses: []
       }
     ]
   },
   {
-    title: 'Cornwall weekend',
+    title: 'Cornwall Weekend',
     members: [
       {
-        name: 'Person A',
+        name: 'Charlie',
         expenses: [
           {
             title: 'Petrol',
-            value: 30,
-            participants: ['Person-A','Person-B']
+            value: 60
           }
         ]
       },
       {
-        name: 'Person B',
+        name: 'Freddie',
         expenses: [
           {
             title: 'Food',
-            value: 80,
-            participants: ['Person-A','Person-B']
+            value: 400
           },
           {
-            title: 'Beer',
-            value: 40,
-            participants: ['Person-A']
+            title: 'Booze',
+            value: 211
           }
         ]
+      },
+      {
+        name: 'Ashby',
+        expenses: []
       }
     ]
   }

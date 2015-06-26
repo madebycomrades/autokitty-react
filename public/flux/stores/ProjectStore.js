@@ -12,9 +12,10 @@ export default class ProjectStore extends Store {
   }
 
   static assignState (oldState,newState) {
-    newState = newState instanceof ProjectRecord ? newState.toJS() : newState;
-    oldState = oldState ? oldState.toJS() : {};
-    return new ProjectRecord(Object.assign({},oldState,newState));
+    // newState = newState instanceof ProjectRecord ? newState.toJS() : newState;
+    // oldState = oldState ? oldState.toJS() : {};
+    // return new ProjectRecord(Object.assign({},oldState,newState));
+    return newState instanceof ProjectRecord ? newState : new ProjectRecord(newState);
   }
 
   state = new ProjectRecord({});
@@ -22,9 +23,16 @@ export default class ProjectStore extends Store {
   constructor ({projectActions}) {
     super();
     this.register(projectActions.fetchProject,this.handleFetchProject);
+    this.register(projectActions.deleteMember,this.handleDeleteMember);
   }
 
   handleFetchProject (project) {
+    this.setState(project);
+  }
+
+  handleDeleteMember (memberSlug) {
+    let project = this.state.toJS();
+    project.members = project.members.filter(member => member.slug !== memberSlug);
     this.setState(project);
   }
 

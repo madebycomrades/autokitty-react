@@ -1,18 +1,29 @@
-import React,{Component} from 'react';
+import React,{Component,PropTypes} from 'react';
+import MemberListItem from '../member-list-item/MemberListItem';
+import ProjectRecord from '../../records/ProjectRecord';
 
-export default class Members extends Component {
+export default class MemberList extends Component {
+
+  static propTypes = {
+    deleteMember: PropTypes.func.isRequired,
+    project: React.PropTypes.instanceOf(ProjectRecord)
+  };
+
   render () {
-    let members = this.props.members;
     return (
-      <ul>
-        {members.map(member => {
+      <div>
+        {this.props.project.members.map(member => {
           return (
-            <li key={member.slug}>
-              {member.name}
-            </li>
+            <div key={member.slug}>
+              <MemberListItem
+                deleteMember={this.props.deleteMember}
+                projectId={this.props.project._id}
+                member={member}
+              />
+            </div>
           );
         })}
-      </ul>
+      </div>
     );
   }
 }

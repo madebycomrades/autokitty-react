@@ -27,7 +27,7 @@ let NewProject = proxyquire('./NewProject',{
   '../../flux/Flux': FluxMock
 });
 
-describe('NewProject',() => {
+describe('NewProject component',() => {
 
   let newProject;
   let flux;
@@ -37,23 +37,23 @@ describe('NewProject',() => {
     newProject = render(<NewProject flux={flux}/>);
   });
 
-  it('should render a button',() => {
+  it('renders a button',() => {
     let button = byType(newProject,ButtonMock);
     expect(button).toBeDefined();
   });
 
-  it('should render a ProjectList',() => {
+  it('renders a ProjectList',() => {
     let projectList = byType(newProject,ProjectListMock);
     expect(projectList).toBeDefined();
   });
 
-  it('should render a text input for the project title',() => {
+  it('renders an input for the project title',() => {
     let input = byTag(newProject,'input');
     expect(input).toBeDefined();
     expect(input.getDOMNode().getAttribute('type')).toBe('text');
   });
 
-  it('should update the project title',() => {
+  it('updates the project title',() => {
     let input = byTag(newProject,'input');
     Simulate.change(input,{target: {value: 'Test Project'}});
     expect(newProject.state.title).toBe('Test Project');
@@ -72,11 +72,11 @@ describe('NewProject',() => {
       Simulate.submit(form);
     });
 
-    it('should retrieve the project actions',() => {
+    it('retrieves the project actions',() => {
       expect(flux.getActions).toHaveBeenCalledWith('project');
     });
 
-    it('should invoke the newProject action',() => {
+    it('invokes the newProject action',() => {
       expect(flux.projectActions.newProject).toHaveBeenCalledWith({title: projectTitle});
     });
   });

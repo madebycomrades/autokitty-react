@@ -2,18 +2,15 @@
   "name": "autokitty",
   "version": "0.0.1",
   "description": "This kitty sorts out your complicated group expenses",
-  "config": {
-    "localdb": ".db/autokitty"
-  },
   "scripts": {
     "postinstall": "npm run bundle",
     "start": "babel-node --stage 0 index.js",
-    "dev:start": "NODE_ENV=development PORT=3000 npm start",
-    "watch:server": "nodemon --watch index.js --watch views --watch db --ext js,json,hbs --exec 'npm run dev:start'",
+    "start:dev": "NODE_ENV=development PORT=3000 npm start",
+    "watch:server": "nodemon --watch index.js --watch views --watch db --ext js,json,hbs --exec 'npm run start:dev'",
     "watch:client": "WATCHIFY=true babel-node --stage 0 browserify.js",
     "bundle": "babel-node --stage 0 browserify.js",
     "test": "babel-node --stage 0 test.js",
-    "lint": "eslint test.js index.js browserify.js public views db jasmine-helpers"
+    "lint": "eslint ."
   },
   "dependencies": {
     "babel": "^5.5.4",
@@ -49,16 +46,5 @@
   "engines": {
     "iojs": "2.0.0",
     "npm": "2.9.0"
-  },
-  "jspm": {
-    "directories": {
-      "baseURL": "public"
-    },
-    "dependencies": {},
-    "devDependencies": {
-      "babel": "npm:babel-core@^5.1.13",
-      "babel-runtime": "npm:babel-runtime@^5.1.13",
-      "core-js": "npm:core-js@^0.9.4"
-    }
   }
 }
