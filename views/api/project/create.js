@@ -1,12 +1,16 @@
 import db from '../../../db/db';
-import route from 'koa-route';
 import {json} from 'co-body';
-import ProjectRecord from '../../../public/records/ProjectRecord';
+import route from 'koa-route';
+import shortid from 'shortid';
+import slug from 'to-slug-case';
 
 export default route.post('/api/project',function * () {
-  let body = yield json(this);
-  let {id} = yield db.put(new ProjectRecord(body).toJS());
+  let project = yield json(this);
+  project._id = `${slug(project.title)}-${shortid.generate()}`;
+  project.type= 'project';
+  project.createdAt = Date.now();
+  yield db.put(project);
   this.response.status = 201;
   this.response.type = 'json';
-  this.body = JSON.stringify({id});
+  this.body = JSON.stringify(project);
 });

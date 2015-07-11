@@ -8,7 +8,7 @@ const {WATCHIFY} = process.env;
 var b = browserify({
   cache: {},
   packageCache: {},
-  entries: ['./public/main.js']
+  entries: ['./src/main.js']
 });
 
 function bundle () {
