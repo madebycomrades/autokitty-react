@@ -1,27 +1,24 @@
 import * as types from '../constants/actionTypes';
+import {PROJECT_RESOURCE} from '../constants/paths';
+import fetch from 'isomorphic-fetch';
 
-export function syncProjects () {
+export function getProjects () {
   return {
-    type: types.SYNC_PROJECTS,
-    projects: [
-      {title: 'He he!',
-      _id: '1'},
-      {title: 'Ho ho!',
-      _id: '2'},
-    ]
+    type: types.GET_PROJECTS,
+    payload: fetch(PROJECT_RESOURCE)
   };
 }
 
 export function addProject (title) {
   return {
     type: types.ADD_PROJECT,
-    title
+    payload: {title}
   };
 }
 
 export function deleteProject (_id) {
   return {
     type: types.DELETE_PROJECT,
-    _id
+    payload: {_id}
   };
 }

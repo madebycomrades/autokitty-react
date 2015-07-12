@@ -7,6 +7,7 @@ import ProjectList from '../components/project-list/ProjectList';
 import NewProject from '../components/new-project/NewProject';
 
 export default class AutoKittyApp {
+
   render () {
     return (
       <Connector select={state => ({projects:state.projects})}>

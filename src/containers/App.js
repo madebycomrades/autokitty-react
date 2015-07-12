@@ -3,17 +3,23 @@ import AutoKittyApp from './AutoKittyApp';
 import {createStore,composeMiddleware} from 'redux';
 import {Provider} from 'redux/react';
 import * as reducers from '../reducers';
-import {syncProjects} from '../actions/projectActions';
+import * as projectActions from '../actions/projectActions';
 import * as middlewares from '../middlewares';
 
-const store = createStore(reducers,{},Object.keys(middlewares).map(key => middlewares[key]));
-store.dispatch(syncProjects());
+const store = createStore(reducers,{},[
+  middlewares.promise,
+  middlewares.httpError,
+  middlewares.json,
+  middlewares.logger
+]);
+
+store.dispatch(projectActions.getProjects());
 
 export default class App {
   render() {
     return (
       <Provider store={store}>
-        {() => <AutoKittyApp /> }
+        {() => <AutoKittyApp/> }
       </Provider>
     );
   }
