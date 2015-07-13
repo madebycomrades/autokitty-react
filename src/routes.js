@@ -18,7 +18,8 @@ export default [
     pattern: '/project/:projectId/member/:memberId/expense/:expenseId'
   }
 ].map(route => {
-    const keys = [];
-    const re = pathToRegExp(route.pattern,keys);
-    return {...route,keys,re};
-});;
+  const keys = [];
+  const re = pathToRegExp(route.pattern,keys);
+  const toPath = pathToRegExp.compile(route.pattern);
+  return {...route,keys,re,toPath};
+});

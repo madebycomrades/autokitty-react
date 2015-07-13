@@ -10,13 +10,13 @@ export default class AutoKittyApp {
 
   render () {
     return (
-      <Connector select={state => ({projects:state.projects})}>
+      <Connector select={state => ({projects:state.projects,location:state.location})}>
         {this.renderChild}
       </Connector>
     );
   }
 
-  renderChild ({projects,dispatch}) {
+  renderChild ({projects,location,dispatch}) {
     const actions = bindActionCreators(projectActions,dispatch);
     return (
       <Chrome>

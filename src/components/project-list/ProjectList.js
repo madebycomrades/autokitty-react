@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import Link from '../link/Link';
 
 export default class ProjectList extends Component {
 
@@ -7,7 +8,9 @@ export default class ProjectList extends Component {
     return (
       <ul>
         {projects.map(project => {
-          return <li key={project._id}>{project.title}</li>;
+          return <li key={project._id}>
+            <Link route="project" params={{projectId: project._id}}>{project.title}</Link>
+          </li>;
         })}
       </ul>
     );

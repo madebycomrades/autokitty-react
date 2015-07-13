@@ -1,9 +1,11 @@
 import page from 'page';
-import Rx from 'rx-lite';
+import {BehaviorSubject} from 'rx-lite';
 
-const location$ = new Rx.BehaviorSubject();
+let routes;
 
-export default function (routes) {
+export function locationStream (r) {
+  routes = r;
+  const location$ = new BehaviorSubject();
   routes.forEach(route => {
     page(route.pattern,ctx => {
       ctx.route = route;
@@ -15,13 +17,18 @@ export default function (routes) {
     })
   });
   page({click: false});
-  return location$;
+  return location$.distinctUntilChanged();
 }
 
 export function transitionTo (path) {
   page(path);
 }
 
+export function reverse (name,params) {
+  const route = routes.find(route => route.name === name);
+  return route ? route.toPath(params) : '';
+}
+
 export function redirect (path) {
-  // Todo
+  // TODO
 }

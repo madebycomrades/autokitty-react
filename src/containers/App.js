@@ -5,8 +5,10 @@ import {Provider} from 'redux/react';
 import {IS_DEV} from '../constants/env';
 import * as reducers from '../reducers';
 import * as projectActions from '../actions/projectActions';
+import * as locationActions from '../actions/locationActions';
 import * as middleware from '../middleware';
-import location,{transitionTo} from '../utils/location';
+import {locationStream,transitionTo,reverse} from '../utils/location';
+import stateStream from '../utils/stateStream';
 import routes from '../routes';
 
 const middlewareStack = [
@@ -18,18 +20,26 @@ const middlewareStack = [
 if (IS_DEV) middlewareStack.push(middleware.logger);
 
 const store = createStore(reducers,{},middlewareStack);
-
-// store.dispatch(projectActions.getProjects());
-
-const location$ = location(routes);
+const state$ = stateStream(store);
+const location$ = locationStream(routes);
 
 location$.subscribe(location => {
-  console.log(location);
-  // update store
+  store.dispatch(locationActions.updateLocation(location));
 });
 
+store.dispatch(projectActions.getProjects());
+
 export default class App {
-  render() {
+
+  static childContextTypes = {
+    location: React.PropTypes.object.isRequired
+  };
+
+  getChildContext () {
+    return {location: {transitionTo,reverse}};
+  }
+
+  render () {
     return (
       <Provider store={store}>
         {() => <AutoKittyApp/> }
@@ -37,7 +47,3 @@ export default class App {
     );
   }
 }
-
-// Routes ... #177
-// Make a route reducer that saves the current route state. Then, transition from
-// inside a store subscriber whenever the route state changes.
