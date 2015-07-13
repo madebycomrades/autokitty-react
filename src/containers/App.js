@@ -1,19 +1,32 @@
 import React from 'react';
 import AutoKittyApp from './AutoKittyApp';
-import {createStore,composeMiddleware} from 'redux';
+import {createStore} from 'redux';
 import {Provider} from 'redux/react';
+import {IS_DEV} from '../constants/env';
 import * as reducers from '../reducers';
 import * as projectActions from '../actions/projectActions';
-import * as middlewares from '../middlewares';
+import * as middleware from '../middleware';
+import location,{transitionTo} from '../utils/location';
+import routes from '../routes';
 
-const store = createStore(reducers,{},[
-  middlewares.promise,
-  middlewares.httpError,
-  middlewares.json,
-  middlewares.logger
-]);
+const middlewareStack = [
+  middleware.promise,
+  middleware.httpError,
+  middleware.json
+];
 
-store.dispatch(projectActions.getProjects());
+if (IS_DEV) middlewareStack.push(middleware.logger);
+
+const store = createStore(reducers,{},middlewareStack);
+
+// store.dispatch(projectActions.getProjects());
+
+const location$ = location(routes);
+
+location$.subscribe(location => {
+  console.log(location);
+  // update store
+});
 
 export default class App {
   render() {

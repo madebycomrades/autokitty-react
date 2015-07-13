@@ -1,6 +1,6 @@
 {
   "name":"autokitty-react",
   "description": "app.json configures the PR apps",
-  "env":{},
-  "addons":[]
+  "env": {},
+  "addons": []
 }

@@ -13,7 +13,7 @@ export default function httpStatus (next) {
     if (isError) {
       const err = new Error(payload.statusText);
       err.res = payload;
-      return next({...action,payload:err,error:true});
+      return next({...action, payload:err, error:true});
     } else {
       return next(action);
     }

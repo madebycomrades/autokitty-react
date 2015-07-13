@@ -9,6 +9,13 @@ export function getProjects () {
   };
 }
 
+export function getProject (id) {
+  return {
+    type: types.GET_PROJECT,
+    payload: fetch(`${PROJECT_RESOURCE}/${id}`)
+  }
+}
+
 export function addProject (title) {
   return {
     type: types.ADD_PROJECT,
@@ -16,7 +23,7 @@ export function addProject (title) {
   };
 }
 
-export function deleteProject (_id) {
+export function deleteProject (id) {
   return {
     type: types.DELETE_PROJECT,
     payload: {_id}

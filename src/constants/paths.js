@@ -1,4 +1,4 @@
-import {IS_SERVER,PORT} from './env';
+import {IS_SERVER} from './env';
 
-export const API_PATH = IS_SERVER ? `http://localhost:${PORT}/api` : '/api';
-export const PROJECT_RESOURCE = `${API_PATH}/poop`;
+export const API_PATH = IS_SERVER ? `http://localhost:${process.env.PORT}/api` : '/api';
+export const PROJECT_RESOURCE = `${API_PATH}/project`;
