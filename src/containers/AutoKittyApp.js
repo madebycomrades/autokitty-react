@@ -1,6 +1,6 @@
 import React from 'react';
 import {bindActionCreators} from 'redux';
-import {Connector} from 'redux/react';
+import {Connector} from 'react-redux';
 import * as projectActions from '../actions/projectActions';
 import Chrome from '../components/chrome/Chrome';
 import ProjectList from '../components/project-list/ProjectList';

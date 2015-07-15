@@ -1,31 +1,40 @@
 import React from 'react';
-import AutoKittyApp from './AutoKittyApp';
-import {createStore} from 'redux';
-import {Provider} from 'redux/react';
-import {IS_DEV} from '../constants/env';
+import AppContainer from './app/AppContainer';
+import {createStore,combineReducers,applyMiddleware} from 'redux';
+import {Provider} from 'react-redux';
 import * as reducers from '../reducers';
 import * as projectActions from '../actions/projectActions';
 import * as locationActions from '../actions/locationActions';
-import * as middleware from '../middleware';
+import {promise,httpError,json,logger} from '../middleware';
 import {locationStream,transitionTo,reverse} from '../utils/location';
-import stateStream from '../utils/stateStream';
+import storeStream from '../utils/storeStream';
 import routes from '../routes';
 
-const middlewareStack = [
-  middleware.promise,
-  middleware.httpError,
-  middleware.json
-];
+const middleware = [promise,httpError,json,logger];
+const finalCreateStore = applyMiddleware(...middleware)(createStore);
+const reducer = combineReducers(reducers);
+const store = finalCreateStore(reducer/*,initialState*/);
 
-if (IS_DEV) middlewareStack.push(middleware.logger);
-
-const store = createStore(reducers,{},middlewareStack);
-const state$ = stateStream(store);
+const state$ = storeStream(store);
 const location$ = locationStream(routes);
 
-location$.subscribe(location => {
-  store.dispatch(locationActions.updateLocation(location));
-});
+location$
+  .subscribe(location => {
+    store.dispatch(locationActions.updateLocation(location));
+  });
+
+location$
+  .filter(location => !location.path.startsWith('/project/'))
+  .subscribe(location => {
+    store.dispatch(projectActions.resetProject());
+  });
+
+state$
+  .filter(state => state.location.path.startsWith('/project/'))
+  .filter(state => state.project._id !== state.location.params.projectId)
+  .subscribe(state => {
+    store.dispatch(projectActions.getProject(state.location.params.projectId));
+  });
 
 store.dispatch(projectActions.getProjects());
 
@@ -42,7 +51,7 @@ export default class App {
   render () {
     return (
       <Provider store={store}>
-        {() => <AutoKittyApp/> }
+        {() => <AppContainer/>}
       </Provider>
     );
   }

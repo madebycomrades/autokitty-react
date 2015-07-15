@@ -4,7 +4,7 @@ import slug from 'to-slug-case';
 
 const initialState = [];
 
-export default function project (state=initialState,action) {
+export default function projects (state=initialState,action) {
   switch (action.type) {
   case types.GET_PROJECTS:
     return [

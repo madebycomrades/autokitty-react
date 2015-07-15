@@ -1,11 +1,18 @@
 import page from 'page';
 import {BehaviorSubject} from 'rx-lite';
+import pathToRegExp from 'path-to-regexp';
 
 let routes;
 
-export function locationStream (r) {
-  routes = r;
+export function locationStream (appRoutes) {
+
+  routes = appRoutes.map(route => {
+    const toPath = pathToRegExp.compile(route.pattern);
+    return {...route,toPath};
+  });
+
   const location$ = new BehaviorSubject();
+
   routes.forEach(route => {
     page(route.pattern,ctx => {
       ctx.route = route;
@@ -16,7 +23,9 @@ export function locationStream (r) {
       });
     })
   });
+
   page({click: false});
+
   return location$.distinctUntilChanged();
 }
 

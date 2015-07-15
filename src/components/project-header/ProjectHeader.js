@@ -1,16 +1,15 @@
-import React,{Component} from 'react';
-import ProjectRecord from '../../records/ProjectRecord';
+import React,{Component,PropTypes} from 'react';
 
 export default class ProjectHeader extends Component {
 
   static propTypes = {
-    project: React.PropTypes.instanceOf(ProjectRecord)
+    project: PropTypes.object.isRequired
   };
 
   render () {
     return (
       <div>
-        <h2>{this.props.project.get('title')}</h2>
+        <h2>Project: {this.props.project.title}</h2>
       </div>
     );
   }

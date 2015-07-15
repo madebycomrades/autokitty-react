@@ -6,14 +6,16 @@ import watchify from 'watchify';
 
 const {WATCHIFY,NODE_ENV} = process.env;
 
-var b = browserify({
+let b = browserify({
   cache: {},
   packageCache: {},
   entries: ['./src/main.js']
 });
 
 function bundle () {
-  b.bundle().pipe(fs.createWriteStream('./public/main.bundle.js'));
+  const stream = b.bundle();
+  if (WATCHIFY) stream.on('error',error => console.error(`${error.message}\nWaiting for changes...`));
+  stream.pipe(fs.createWriteStream('./public/main.bundle.js'));
 }
 
 if (WATCHIFY) b = watchify(b);
@@ -27,7 +29,7 @@ b.transform(envify({
   NODE_ENV: NODE_ENV
 }));
 
-b.on('update',() => bundle());
-b.on('log',msg => console.log(msg));
+b.on('update',bundle);
+b.on('log',console.log);
 
 bundle();

@@ -21,8 +21,7 @@ const designDoc = {
   }
 };
 
-db.upsert('_design/autokitty',() => designDoc)
-  .catch(error => console.log(error));
+db.upsert('_design/autokitty',() => designDoc).catch(console.error);
 
 var fixtures = projects.map(project => {
   return fetch(`http://localhost:${PORT}/api/project`,{
@@ -30,7 +29,7 @@ var fixtures = projects.map(project => {
     body: JSON.stringify(project)
   });
 });
-Promise.all(fixtures)
-  .catch(error => console.log(error));
+
+Promise.all(fixtures).catch(console.error);
 
 export default db;

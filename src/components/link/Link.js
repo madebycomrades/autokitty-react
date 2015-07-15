@@ -3,7 +3,10 @@ import React,{PropTypes,Component} from 'react';
 export default class Link extends Component {
 
   static contextTypes = {
-    location: PropTypes.object.isRequired
+    location: PropTypes.shape({
+      transitionTo: PropTypes.func.isRequired,
+      reverse: PropTypes.func.isRequired
+    })
   };
 
   static propTypes = {

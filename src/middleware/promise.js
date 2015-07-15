@@ -1,6 +1,6 @@
-export default function promise (next) {
+export default function promise ({dispatch, getState}) {
 
-  return action => {
+  return next => action => {
 
     const {payload} = action;
     const isPromise = payload && typeof payload.then === 'function';

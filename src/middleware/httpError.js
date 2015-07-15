@@ -1,19 +1,19 @@
-export default function httpStatus (next) {
+export default function httpStatus ({dispatch, getState}) {
 
-  return action => {
+  return next => action => {
 
     const {payload} = action;
-    const isApiResponse = payload && typeof payload.json === 'function';
+    const isResponse = payload && payload.constructor.name === 'Response';
 
-    if (!isApiResponse) return next(action);
+    if (!isResponse) return next(action);
 
     const {status} = payload;
     const isError = status < 200 || status >= 300;
 
     if (isError) {
-      const err = new Error(payload.statusText);
-      err.res = payload;
-      return next({...action, payload:err, error:true});
+      const error = new Error(payload.statusText);
+      error.response = payload;
+      return next({...action, payload:error, error:true});
     } else {
       return next(action);
     }

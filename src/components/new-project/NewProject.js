@@ -19,9 +19,9 @@ export default class NewProject extends Component {
     return (
       <div>
         <p>Start a new project</p>
-        <form onSubmit={this.submit}>
+        <form onSubmit={::this.onSubmit}>
           <input type="text" value={title} placeholder="Project title" onChange={::this.onChange}/>
-          <Button onClick={::this.onSubmit}>Go</Button>
+          <input type="submit" value="Create"/>
         </form>
       </div>
     );

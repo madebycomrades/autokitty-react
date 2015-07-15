@@ -1,9 +1,10 @@
-export default function json (next) {
+export default function json ({dispatch, getState}) {
 
-  return action => {
+  return next => action => {
 
     const {payload} = action;
-    const isJson = payload && typeof payload.json === 'function';
+    const isResponse = payload && payload.constructor.name === 'Response';
+    const isJson = isResponse && payload.headers.get('Content-Type').startsWith('application/json');
 
     if (!isJson) return next(action);
 
