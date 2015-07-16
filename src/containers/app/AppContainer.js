@@ -10,11 +10,8 @@ import ProjectContainer from '../project/ProjectContainer';
 export default class AppContainer {
 
   render () {
-    return <Chrome>{this.renderChild()}</Chrome>;
-  }
-
-  renderChild () {
     const {location} = this.props;
-    return location.name === "home" ? <HomeContainer/> : <ProjectContainer/>;
+    const Child = location.name === "home" ? HomeContainer : ProjectContainer;
+    return <Chrome><Child/></Chrome>;
   }
 }

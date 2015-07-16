@@ -7,9 +7,9 @@ export default function project (state=initialState,action) {
   case types.RESET_PROJECT:
     return {};
   case types.GET_PROJECT:
-    return {
-      ...action.payload
-    };
+    return {...action.payload};
+  case types.ADD_PROJECT:
+    return {...action.payload};
   default:
     return state;
   }

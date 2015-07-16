@@ -3,10 +3,10 @@ import React,{PropTypes,Component} from 'react';
 export default class Link extends Component {
 
   static contextTypes = {
-    location: PropTypes.shape({
+    router: PropTypes.shape({
       transitionTo: PropTypes.func.isRequired,
-      reverse: PropTypes.func.isRequired
-    })
+      reverseRoute: PropTypes.func.isRequired
+    }).isRequired
   };
 
   static propTypes = {
@@ -16,14 +16,15 @@ export default class Link extends Component {
 
   handleClick (e) {
     e.preventDefault();
-    const path = e.target.getAttribute('data-path');
-    this.context.location.transitionTo(path);
+    this.context.router.transitionTo(this.props.route,this.props.params);
   }
 
   render () {
-    const path = this.context.location.reverse(this.props.route,this.props.params);
-    return <a href={path} data-path={path} onClick={::this.handleClick}>
-      {this.props.children}
-    </a>;
+    const path = this.context.router.reverseRoute(this.props.route, this.props.params);
+    return (
+      <a href={path} onClick={::this.handleClick}>
+        {this.props.children}
+      </a>
+    );
   }
 }
