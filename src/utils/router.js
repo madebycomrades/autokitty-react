@@ -11,9 +11,9 @@ export function addRoutes (routes) {
   routes.forEach(route => {
 
     const toPath = pathToRegExp.compile(route.pattern);
-    appRoutes.push({...route,toPath});
+    appRoutes.push({...route, toPath});
 
-    page(route.pattern,ctx => {
+    page(route.pattern, ctx => {
       ctx.route = route;
       location$.onNext({
         params: ctx.params,

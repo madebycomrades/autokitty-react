@@ -1,17 +1,33 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import Chrome from '../../components/chrome/Chrome';
-import HomeContainer from '../home/HomeContainer';
-import ProjectContainer from '../project/ProjectContainer';
+import {Provider} from 'react-redux';
+import createStoreShape from 'react-redux/lib/utils/createStoreShape';
+import React,{PropTypes} from 'react';
+import RootContainer from '../root/RootContainer';
 
-@connect(state => ({
-  location: state.location
-}))
+const routerShape = PropTypes.shape({
+  transitionTo: PropTypes.func.isRequired,
+  reverseRoute: PropTypes.func.isRequired
+});
+
 export default class AppContainer {
 
+  static propTypes = {
+    store: createStoreShape(PropTypes).isRequired,
+    router: routerShape.isRequired
+  }
+
+  static childContextTypes = {
+    router: routerShape.isRequired
+  };
+
+  getChildContext () {
+    return {router: this.props.router};
+  }
+
   render () {
-    const {location} = this.props;
-    const Child = location.name === "home" ? HomeContainer : ProjectContainer;
-    return <Chrome><Child/></Chrome>;
+    return (
+      <Provider store={this.props.store}>
+        {() => <RootContainer/>}
+      </Provider>
+    );
   }
 }

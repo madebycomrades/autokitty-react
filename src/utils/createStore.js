@@ -1,5 +1,5 @@
-import * as reducers from './reducers';
-import {promise,httpError,json,logger} from './middleware';
+import * as reducers from '../reducers';
+import {promise,httpError,json,logger} from '../middleware';
 import {createStore,combineReducers,applyMiddleware} from 'redux';
 
 const middleware = [promise,httpError,json,logger];
