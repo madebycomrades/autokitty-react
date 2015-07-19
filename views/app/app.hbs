@@ -3,10 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=0,minimal-ui">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=0">
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">{{{appString}}}</div>
+    <script>window.INITIAL_STATE = {{{initialStateString}}}</script>
     <script src="/main.bundle.js"></script>
   </body>
 </html>

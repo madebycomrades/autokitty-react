@@ -1,9 +1,7 @@
 {
   "spec_dir": "",
   "spec_files": [
-    "public/**/*-spec.js",
-    "views/**/*-spec.js",
-    "db/**/*-spec.js"
+    "src/**/*-spec.js"
   ],
   "helpers": [
     "jasmine-helpers/**/*.js"

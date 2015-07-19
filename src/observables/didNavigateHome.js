@@ -1,4 +1,5 @@
-export default function (location$) {
-  return location$
-    .filter(location => location.name === 'home');
+export default function (store$) {
+  return store$
+    .distinctUntilChanged(state => state.location.name)
+    .filter(state => state.location.name === 'home');
 }

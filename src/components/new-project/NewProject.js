@@ -1,6 +1,10 @@
-import React,{Component} from 'react';
+import React,{Component,PropTypes} from 'react';
 
 export default class NewProject extends Component {
+
+  static propTypes = {
+    addProject: PropTypes.func.isRequired
+  };
 
   state = {title: null};
 

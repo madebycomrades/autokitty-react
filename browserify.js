@@ -15,7 +15,7 @@ let b = browserify({
 function bundle () {
   const stream = b.bundle();
   if (WATCHIFY) stream.on('error',error => console.error(`${error.message}\nWaiting for changes...`));
-  stream.pipe(fs.createWriteStream('./public/main.bundle.js'));
+  stream.pipe(fs.createWriteStream('./static/main.bundle.js'));
 }
 
 if (WATCHIFY) b = watchify(b);
