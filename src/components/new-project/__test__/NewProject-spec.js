@@ -29,7 +29,7 @@ describe('NewProject', () => {
     expect(submitInputs.length).toBe(1);
   });
 
-  it('it calls the addProject function with a project title', () => {
+  it('calls addProject with a title', () => {
     const form = output.props.children.find(child => child.type === 'form');
     const textInput = form.props.children.find(child => child.props.type === 'text');
     textInput.props.onChange({target: {value: 'foo'}});
