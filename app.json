@@ -2,9 +2,7 @@
   "name":"autokitty-react",
   "description": "This file configures the PR review apps. See https://devcenter.heroku.com/articles/github-integration-review-apps",
   "env": {
-    "NODE_ENV": {
-      "required": true
-    }
+    "NODE_ENV": "production"
   },
   "addons": []
 }

@@ -9,7 +9,7 @@ export default function json () {
     if (!isJson) return next(action);
 
     return payload.json()
-      .then(res => next({...action, payload: res}))
-      .catch(err => next({...action, payload: err, error: true}));
+      .then(payload => next({...action, payload}))
+      .catch(payload => next({...action, payload, error: true}));
   };
 }

@@ -7,8 +7,13 @@ export default function promise () {
 
     if (!isPromise) return next(action);
 
+    const {types} = action;
+    const [PENDING, FULFILLED, REJECTED] = types;
+
+    next({type: PENDING});
+
     return payload
-      .then(res => next({...action, payload: res}))
-      .catch(err => next({...action, payload: err, error: true}));
+      .then(payload => next({payload, type: FULFILLED}))
+      .catch(payload => next({payload, error: true, type: REJECTED}));
   };
 }

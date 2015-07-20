@@ -4,7 +4,7 @@ const initialState = [];
 
 export default function projects (state=initialState, action) {
   switch (action.type) {
-  case types.GET_PROJECTS:
+  case types.GET_PROJECTS_FULFILLED:
     return [...action.payload];
   case types.ADD_PROJECT:
     return [{...action.payload}, ...state];

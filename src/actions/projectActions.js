@@ -4,7 +4,11 @@ import fetch from 'isomorphic-fetch';
 
 export function getProject (projectId) {
   return {
-    type: types.GET_PROJECT,
+    types: [
+      types.GET_PROJECT_PENDING,
+      types.GET_PROJECT_FULFILLED,
+      types.GET_PROJECT_REJECTED
+    ],
     payload: fetch(`${PROJECT_RESOURCE}/${projectId}`)
   };
 }
@@ -18,7 +22,11 @@ export function resetProject () {
 
 export function addProject (title) {
   return {
-    type: types.ADD_PROJECT,
+    types: [
+      types.ADD_PROJECT_PENDING,
+      types.ADD_PROJECT_FULFILLED,
+      types.ADD_PROJECT_REJECTED
+    ],
     payload: fetch(PROJECT_RESOURCE, {
       method: 'POST',
       body: JSON.stringify({title})
@@ -28,16 +36,11 @@ export function addProject (title) {
 
 export function getProjects () {
   return {
-    type: types.GET_PROJECTS,
+    types: [
+      types.GET_PROJECTS_PENDING,
+      types.GET_PROJECTS_FULFILLED,
+      types.GET_PROJECTS_REJECTED
+    ],
     payload: fetch(PROJECT_RESOURCE)
-  };
-}
-
-export function deleteProject (projectId) {
-  return {
-    type: types.DELETE_PROJECT,
-    payload: fetch(`${PROJECT_RESOURCE}/${projectId}`, {
-      method: 'DELETE'
-    })
   };
 }
