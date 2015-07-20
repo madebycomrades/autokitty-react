@@ -17,11 +17,13 @@ There are many other apps that do similar things. This project is mainly a learn
 
 ## Tech
 
-- ES6 (Babel)
-- Koa server
-- PouchDB
-- Isomorphic React + Flux
+- ~~Isomorphic~~universal React
+- Redux
+- RxJS
+- Babel
 - Browserify
+- Koa
+- PouchDB
 
 ## System requirements
 
@@ -31,7 +33,7 @@ There are many other apps that do similar things. This project is mainly a learn
 
 ```sh
 $ npm i
-$ npm run start:dev
+$ npm run watch:dev
 ```
 
 ## CI/Deployment
@@ -57,6 +59,8 @@ Bundle the client files while watching and re-bundling,
 ```sh
 $ npm run watch:client
 ```
+
+> You'll need two terminal windows going during development. One for watching the server and one for watching the client.
 
 ## Linting and testing
 

@@ -1,9 +1,9 @@
 import db from '../../../db/db';
 import route from 'koa-route';
 
-export default route.get('/api/project',function * () {
-  let projects = yield db.query('autokitty/projects');
-  projects = projects.rows.map(row => row.value);
+export default route.get('/api/project', function * () {
+  const docs = (yield db.query('autokitty/projects'))
+    .rows.map(row => row.value);
   this.response.type = 'json';
-  this.body = JSON.stringify(projects);
+  this.body = JSON.stringify(docs);
 });

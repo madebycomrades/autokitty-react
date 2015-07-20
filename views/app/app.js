@@ -1,40 +1,43 @@
-import Flux from '../../public/flux/Flux';
-import FluxComponent from 'flummox/component';
-import Handlebars from 'handlebars';
+import {PROJECT_RESOURCE} from '../../src/constants/paths';
 import {readFileSync} from 'fs';
+import AppContainer from '../../src/containers/app/AppContainer';
+import createStore from '../../src/utils/createStore';
+import fetch from 'isomorphic-fetch';
+import Handlebars from 'handlebars';
 import React from 'react';
-import {create as createRouter} from '../../public/routing/router';
-import routes from '../../public/routing/routes';
+import Router from '../../src/utils/Router';
+import routes from '../../src/routes';
 
-const {NODE_ENV} = process.env;
-
-let tpl = Handlebars.compile(readFileSync(`${__dirname}/app.hbs`,{encoding: 'utf8'}));
-let isDev = NODE_ENV === 'development';
+const router = new Router(routes);
+const tpl = Handlebars.compile(readFileSync(`${__dirname}/app.hbs`, {encoding: 'utf8'}));
 
 export default function * () {
 
-  let router = createRouter(routes,this.url);
+  const {url} = this.request;
+  const route = router.matchPath(url);
 
-  let flux = new Flux();
-
-  let projectActions = flux.getActions('project');
-
-  let {Root,state} = yield new Promise(resolve => {
-    router.run((Root,state) => resolve({Root,state}));
-  });
-
-  if (state.params.projectId) {
-    yield projectActions.fetchProject(state.params.projectId);
+  if (!route) {
+    this.status = 404;
+    return;
   }
 
-  let stateString = flux.serialize();
-  stateString = stateString.split('\\').join('\\\\');
+  const initialState = {
+    location: {
+      params: route.params,
+      path: url,
+      name: route.name
+    }
+  };
 
-  let appString = React.renderToString(
-    <FluxComponent flux={flux}>
-      <Root/>
-    </FluxComponent>
-  );
+  const projectId = route.params.projectId;
 
-  this.body = tpl({isDev,appString,stateString});
+  if (projectId) {
+    const result = yield fetch(`${PROJECT_RESOURCE}/${projectId}`);
+    initialState.project = yield result.json();
+  }
+
+  const store = createStore(initialState);
+  const appString = React.renderToString(<AppContainer store={store} router={router}/>);
+  const initialStateString = JSON.stringify(initialState);
+  this.body = tpl({appString, initialStateString});
 }
