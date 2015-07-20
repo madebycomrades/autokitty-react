@@ -6,7 +6,7 @@ import koa from 'koa';
 import projectCollection from './views/api/project/collection';
 import statics from 'koa-static';
 
-const {NODE_ENV,PORT} = process.env;
+const {NODE_ENV, PORT} = process.env;
 
 let app = koa();
 

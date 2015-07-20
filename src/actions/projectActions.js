@@ -1,5 +1,5 @@
-import * as types from '../constants/actionTypes';
 import {PROJECT_RESOURCE} from '../constants/paths';
+import * as types from '../constants/actionTypes';
 import fetch from 'isomorphic-fetch';
 
 export function getProject (projectId) {
@@ -13,7 +13,7 @@ export function resetProject () {
   return {
     type: types.RESET_PROJECT,
     payload: {}
-  }
+  };
 }
 
 export function addProject (title) {

@@ -42,19 +42,6 @@ export default class Router {
     return match;
   }
 
-  isValidPath (path) {
-    return this.getMatches(path).length > 0;
-  }
-
-  // getParam (path, key) {
-  //   if (!this.isValidPath(path)) return;
-  //   const match = this.getMatches(path)[0];
-  //   const index = match.route.keys
-  //     .filter(key => key.name === key)
-  //     .map((key,i) => i)[0];
-  //   return match.result[index+1];
-  // }
-
   transitionTo (name, params) {
     const path = this.reverseRoute(name, params);
     page(path);
