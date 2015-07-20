@@ -11,7 +11,7 @@ export default class AppContainer {
 
   render () {
     const {location} = this.props;
-    const Child = location.name === "home" ? HomeContainer : ProjectContainer;
+    const Child = location.name === 'home' ? HomeContainer : ProjectContainer;
     return <Chrome><Child/></Chrome>;
   }
 }

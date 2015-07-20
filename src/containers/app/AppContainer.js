@@ -1,6 +1,6 @@
 import {Provider} from 'react-redux';
 import createStoreShape from 'react-redux/lib/utils/createStoreShape';
-import React,{PropTypes} from 'react';
+import React, {PropTypes} from 'react';
 import RootContainer from '../root/RootContainer';
 
 const routerShape = PropTypes.shape({

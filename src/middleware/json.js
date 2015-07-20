@@ -1,4 +1,4 @@
-export default function json ({dispatch, getState}) {
+export default function json () {
 
   return next => action => {
 
@@ -9,7 +9,7 @@ export default function json ({dispatch, getState}) {
     if (!isJson) return next(action);
 
     return payload.json()
-      .then(res => next({...action, payload:res}))
-      .catch(err => next({...action, payload:err, error:true}));
-  }
+      .then(res => next({...action, payload: res}))
+      .catch(err => next({...action, payload: err, error: true}));
+  };
 }

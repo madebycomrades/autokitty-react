@@ -1,4 +1,4 @@
-export default function httpStatus ({dispatch, getState}) {
+export default function httpStatus () {
 
   return next => action => {
 
@@ -13,9 +13,9 @@ export default function httpStatus ({dispatch, getState}) {
     if (isError) {
       const error = new Error(payload.statusText);
       error.response = payload;
-      return next({...action, payload:error, error:true});
+      return next({...action, payload: error, error: true});
     } else {
       return next(action);
     }
-  }
+  };
 }

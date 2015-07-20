@@ -2,15 +2,14 @@ import NewProject from '../NewProject';
 import React from 'react/addons';
 import {renderShallowTree} from '../../../../src/utils/testUtils';
 
-describe('NewProject',() => {
+describe('NewProject', () => {
 
   let addProject;
-  var output;
-  var renderer;
+  let output;
 
   beforeEach(() => {
     addProject = jasmine.createSpy('addProject');
-    ({output,renderer} = renderShallowTree(<NewProject addProject={addProject}/>));
+    ({output} = renderShallowTree(<NewProject addProject={addProject}/>));
   });
 
   it('renders one form', () => {

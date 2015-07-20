@@ -15,7 +15,7 @@ const router = new Router(routes);
 router.start();
 
 observables.didNavigateHome(store$)
-  .subscribe(state => {
+  .subscribe(() => {
     store.dispatch(projectActions.resetProject());
     store.dispatch(projectActions.getProjects());
   });
@@ -26,7 +26,7 @@ observables.didNavigateUnCachedProjectRoute(store$)
   });
 
 observables.didCreateProject(store$)
-  .subscribe(projectId => router.transitionTo('project',{projectId}));
+  .subscribe(projectId => router.transitionTo('project', {projectId}));
 
 router.location$
   .distinctUntilChanged(location => location.name)

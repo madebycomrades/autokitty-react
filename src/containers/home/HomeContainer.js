@@ -11,8 +11,8 @@ import NewProject from '../../components/new-project/NewProject';
 export default class HomeContainer {
 
   render () {
-    const {dispatch,projects} = this.props;
-    const {addProject} = bindActionCreators(projectActions,dispatch);
+    const {dispatch, projects} = this.props;
+    const {addProject} = bindActionCreators(projectActions, dispatch);
     return (
       <div>
         <NewProject addProject={addProject}/>

@@ -1,4 +1,4 @@
-export default function promise ({dispatch, getState}) {
+export default function promise () {
 
   return next => action => {
 
@@ -8,7 +8,7 @@ export default function promise ({dispatch, getState}) {
     if (!isPromise) return next(action);
 
     return payload
-      .then(res => next({...action, payload:res}))
-      .catch(err => next({...action, payload:err, error:true}));
-  }
+      .then(res => next({...action, payload: res}))
+      .catch(err => next({...action, payload: err, error: true}));
+  };
 }

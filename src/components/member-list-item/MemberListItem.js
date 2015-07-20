@@ -1,11 +1,9 @@
-import {Link} from 'react-router';
-import MemberRecord from '../../records/MemberRecord';
-import React,{Component,PropTypes} from 'react';
+import Link from '../link/Link';
+import React, {Component, PropTypes} from 'react';
 
 export default class MemberListItem extends Component {
 
   static propTypes = {
-    member: PropTypes.instanceOf(MemberRecord),
     deleteMember: PropTypes.func.isRequired,
     projectId: PropTypes.string.isRequired
   };

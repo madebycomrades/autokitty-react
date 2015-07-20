@@ -6,10 +6,9 @@ import {renderShallowTree} from '../../../../src/utils/testUtils';
 describe('Chrome', () => {
 
   let output;
-  let renderer;
 
   beforeEach(() => {
-    ({output,renderer} = renderShallowTree(<Chrome><p>content</p></Chrome>));
+    ({output} = renderShallowTree(<Chrome><p>content</p></Chrome>));
   });
 
   it('renders three children', () => {

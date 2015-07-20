@@ -1,4 +1,4 @@
-import React,{PropTypes,Component} from 'react';
+import React, {PropTypes, Component} from 'react';
 
 export default class Link extends Component {
 
@@ -16,7 +16,7 @@ export default class Link extends Component {
 
   handleClick (e) {
     e.preventDefault();
-    this.context.router.transitionTo(this.props.route,this.props.params);
+    this.context.router.transitionTo(this.props.route, this.props.params);
   }
 
   render () {

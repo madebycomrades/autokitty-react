@@ -1,12 +1,10 @@
-import React,{Component,PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import MemberListItem from '../member-list-item/MemberListItem';
-import ProjectRecord from '../../records/ProjectRecord';
 
 export default class MemberList extends Component {
 
   static propTypes = {
-    deleteMember: PropTypes.func.isRequired,
-    project: React.PropTypes.instanceOf(ProjectRecord)
+    deleteMember: PropTypes.func.isRequired
   };
 
   render () {

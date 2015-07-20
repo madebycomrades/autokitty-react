@@ -35,7 +35,7 @@ export default class Router {
       const result = route.re.exec(path);
       if (result) {
         const params = {};
-        route.keys.forEach((key,i) => params[key.name] = result[i+1]);
+        route.keys.forEach((key, i) => params[key.name] = result[i + 1]);
         match = {...route, params};
       }
     });
