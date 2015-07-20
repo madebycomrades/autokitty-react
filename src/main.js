@@ -5,7 +5,7 @@ import AppContainer from './containers/app/AppContainer';
 import createStore from './utils/createStore';
 import observableFromStore from './utils/observableFromStore';
 import React from 'react';
-import Router from './utils/router';
+import Router from './utils/Router';
 import routes from './routes';
 
 const store = createStore(window.INITIAL_STATE);
