@@ -3,12 +3,13 @@
   "version": "0.0.1",
   "description": "This kitty sorts out your complicated group expenses",
   "scripts": {
-    "postinstall": "npm run bundle",
+    "postinstall": "npm run bundle && npm run uglify",
     "start": "babel-node --stage 0 index.js",
     "start:dev": "NODE_ENV=development PORT=3000 npm start",
     "watch:server": "nodemon --watch index.js --watch views --watch db --ext js,json,hbs --exec 'npm run start:dev'",
     "watch:client": "WATCHIFY=true NODE_ENV=development babel-node --stage 0 browserify.js",
     "bundle": "mkdir -p static && babel-node --stage 0 browserify.js",
+    "uglify": "uglifyjs static/main.bundle.js -o static/main.bundle.js -m -c unused=false",
     "test": "babel-node --stage 0 test.js",
     "lint": "eslint ."
   },
@@ -44,6 +45,7 @@
     "rx-lite": "2.5.2",
     "shortid": "2.2.2",
     "to-slug-case": "0.1.2",
+    "uglify-js": "2.4.23",
     "watchify": "3.3.0"
   },
   "engines": {

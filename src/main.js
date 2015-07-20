@@ -1,3 +1,5 @@
+require('babel/polyfill');
+
 import * as locationActions from './actions/locationActions';
 import * as observables from './observables';
 import * as projectActions from './actions/projectActions';
