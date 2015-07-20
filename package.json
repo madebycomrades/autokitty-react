@@ -13,7 +13,7 @@
     "gzip": "babel-node --stage 0 gzip.js",
     "test": "babel-node --stage 0 test.js",
     "lint": "eslint .",
-    "clean": "mkdir -p static && rm -r static/main.bundle.js*"
+    "clean": "mkdir -p static && rm -rf static/main.bundle.js*"
   },
   "dependencies": {
     "babel": "5.6.23",
