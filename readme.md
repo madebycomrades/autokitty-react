@@ -1,5 +1,8 @@
 # AutoKitty
 
+[![Codeship](https://img.shields.io/codeship/abe27f10-debd-0132-a627-465ff4e7e511/master.svg?label=master&style=flat-square)](https://codeship.com/projects/80431)
+[![Codeship](https://img.shields.io/codeship/abe27f10-debd-0132-a627-465ff4e7e511/develop.svg?label=develop&style=flat-square)](https://codeship.com/projects/80431)
+
 > This kitty sorts out your complicated group expenses.
 
 ## Overview
@@ -17,24 +20,26 @@ There are many other apps that do similar things. This project is mainly a learn
 
 ## Tech
 
-- ~~Isomorphic~~universal React
-- Redux
-- RxJS
-- Babel
-- Browserify
-- Koa
-- PouchDB
+- ~~Isomorphic~~Universal React
+- Redux (for atomic flux with reducers)
+- RxJS (for observing and reacting to state changes)
+- Babel (for ES6>ES5 transpiling)
+- Browserify (for bundling)
+- Koa (for the static file server and API)
+- PouchDB (CouchDB adapter)
 
 ## System requirements
 
-- iojs `^2.0.0` (manage versions with [nvm](https://github.com/creationix/nvm))
+- iojs `^2.0.0` (manage Node versions with [nvm](https://github.com/creationix/nvm))
 
 ## Quick start
 
 ```sh
-$ npm i
-$ npm run watch:dev
+$ npm install
+$ npm run start:dev
 ```
+
+> `npm install` will install the dependencies and then automatically build the client code in a postinstall step. `npm run start:dev` will spin up the server on localhost:3000.
 
 ## CI/Deployment
 
@@ -60,7 +65,7 @@ Bundle the client files while watching and re-bundling,
 $ npm run watch:client
 ```
 
-> You'll need two terminal windows going during development. One for watching the server and one for watching the client.
+> You'll need two terminal windows going during development, one for watching the server and one for watching the client.
 
 ## Linting and testing
 
@@ -73,8 +78,10 @@ $ npm run -s lint
 Run the unit tests with,
 
 ```sh
-$ npm -s t
+$ npm run -s test
 ```
+
+> The `-s` flag stops npm from filling up your console with its overly chatty output, with `-s` you'll just get the linting and testing tool's stderr or stdout.
 
 ## Database
 

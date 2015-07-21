@@ -5,24 +5,27 @@ import pathToRegExp from 'path-to-regexp';
 export default class Router {
 
   constructor (routes) {
-    this.location$ = new BehaviorSubject();
     this.routes = routes.map(route => {
+      const toPath = pathToRegExp.compile(route.pattern);
+      const keys = [];
+      const re = pathToRegExp(route.pattern, keys);
+      return {...route, toPath, re, keys};
+    });
+  }
 
+  createLocationObservable () {
+    const location$ = new BehaviorSubject();
+    this.routes.forEach(route => {
       page(route.pattern, ctx => {
         ctx.route = route;
-        this.location$.onNext({
+        location$.onNext({
           params: ctx.params,
           path: ctx.path,
           name: route.name
         });
       });
-
-      const toPath = pathToRegExp.compile(route.pattern);
-      const keys = [];
-      const re = pathToRegExp(route.pattern, keys);
-
-      return {...route, toPath, re, keys};
     });
+    return location$.distinctUntilChanged(location => location.name);
   }
 
   start () {
