@@ -12,7 +12,7 @@ const db = new PouchDB('autokitty', {db: memdown});
 export default db;
 
 const {PORT} = process.env;
-
+const emit = () => {}; // Find out why eslint isn't registering emit as a global below
 const designDoc = {
   views: {
     projects: {
