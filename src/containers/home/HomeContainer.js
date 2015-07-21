@@ -1,9 +1,9 @@
-import React from 'react';
-import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import * as projectActions from '../../actions/projectActions';
-import ProjectList from '../../components/project-list/ProjectList';
 import NewProject from '../../components/new-project/NewProject';
+import ProjectList from '../../components/project-list/ProjectList';
+import React from 'react';
 
 @connect(state => ({
   projects: state.projects

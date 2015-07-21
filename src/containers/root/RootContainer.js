@@ -1,17 +1,27 @@
-import React from 'react';
+import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import * as messageActions from '../../actions/messageActions';
 import Chrome from '../../components/chrome/Chrome';
 import HomeContainer from '../home/HomeContainer';
+import MessageList from '../../components/message-list/MessageList';
 import ProjectContainer from '../project/ProjectContainer';
+import React from 'react';
 
 @connect(state => ({
-  location: state.location
+  location: state.location,
+  messages: state.messages
 }))
 export default class AppContainer {
 
   render () {
-    const {location} = this.props;
-    const Child = location.name === 'home' ? HomeContainer : ProjectContainer;
-    return <Chrome><Child/></Chrome>;
+    const {dispatch, location, messages} = this.props;
+    const {removeMessage} = bindActionCreators(messageActions, dispatch);
+    const ChildContainer = location.name === 'home' ? HomeContainer : ProjectContainer;
+    return (
+      <Chrome>
+        <ChildContainer/>
+        <MessageList messages={messages} removeMessage={removeMessage}/>
+      </Chrome>
+    );
   }
 }

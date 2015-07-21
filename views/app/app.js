@@ -1,8 +1,7 @@
-import {PROJECT_RESOURCE} from '../../src/constants/paths';
 import {readFileSync} from 'fs';
 import AppContainer from '../../src/containers/app/AppContainer';
 import createStore from '../../src/utils/createStore';
-import fetch from 'isomorphic-fetch';
+import db from '../../db/db';
 import Handlebars from 'handlebars';
 import React from 'react';
 import Router from '../../src/utils/Router';
@@ -29,12 +28,9 @@ export default function * () {
     }
   };
 
-  const projectId = route.params.projectId;
+  const {projectId} = route.params;
 
-  if (projectId) {
-    const result = yield fetch(`${PROJECT_RESOURCE}/${projectId}`);
-    initialState.project = yield result.json();
-  }
+  if (projectId) initialState.project = yield db.get(projectId);
 
   const store = createStore(initialState);
   const appString = React.renderToString(<AppContainer store={store} router={router}/>);
