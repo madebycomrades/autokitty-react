@@ -21,11 +21,11 @@ There are many other apps that do similar things. This project is mainly a learn
 ## Tech
 
 - ~~Isomorphic~~Universal React
-- Redux (for atomic flux with reducers)
-- RxJS (for observing and reacting to state changes)
-- Babel (for ES6>ES5 transpiling)
-- Browserify (for bundling)
-- Koa (for the static file server and API)
+- Redux (atomic flux with reducers)
+- RxJS (reactive state streams)
+- Babel (ES6>ES5 transpiling)
+- Browserify (client bundling)
+- Koa (static file server and REST API)
 - PouchDB (CouchDB adapter)
 
 ## System requirements
@@ -39,7 +39,7 @@ $ npm install
 $ npm run start:dev
 ```
 
-> `npm install` will install the dependencies and then automatically build the client code in a postinstall step. `npm run start:dev` will spin up the server on localhost:3000.
+> `npm install` will install the dependencies and then automatically build the client code in a postinstall step.<br/>`npm run start:dev` will spin up the server on localhost:3000.
 
 ## CI/Deployment
 
