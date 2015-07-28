@@ -4,12 +4,12 @@ import {renderShallowTree} from '../../../../src/utils/testUtils';
 
 describe('NewProject', () => {
 
-  let addProject;
+  let createProject;
   let output;
 
   beforeEach(() => {
-    addProject = jasmine.createSpy('addProject');
-    ({output} = renderShallowTree(<NewProject addProject={addProject}/>));
+    createProject = jasmine.createSpy('createProject');
+    ({output} = renderShallowTree(<NewProject createProject={createProject}/>));
   });
 
   it('renders one form', () => {
@@ -29,11 +29,11 @@ describe('NewProject', () => {
     expect(submitInputs.length).toBe(1);
   });
 
-  it('calls addProject with a title', () => {
+  it('calls createProject with a title', () => {
     const form = output.props.children.find(child => child.type === 'form');
     const textInput = form.props.children.find(child => child.props.type === 'text');
     textInput.props.onChange({target: {value: 'foo'}});
     form.props.onSubmit({preventDefault: () => {}});
-    expect(addProject).toHaveBeenCalledWith('foo');
+    expect(createProject).toHaveBeenCalledWith('foo');
   });
 });

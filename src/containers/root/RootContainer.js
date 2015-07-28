@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import * as messageActions from '../../actions/messageActions';
 import Chrome from '../../components/chrome/Chrome';
 import HomeContainer from '../home/HomeContainer';
-import MessageList from '../../components/message-list/MessageList';
 import ProjectContainer from '../project/ProjectContainer';
 import React from 'react';
 
@@ -16,12 +15,14 @@ export default class AppContainer {
   render () {
     const {dispatch, location, messages} = this.props;
     const {removeMessage} = bindActionCreators(messageActions, dispatch);
-    const ChildContainer = location.name === 'home' ? HomeContainer : ProjectContainer;
     return (
-      <Chrome>
-        <ChildContainer/>
-        <MessageList messages={messages} removeMessage={removeMessage}/>
+      <Chrome messages={messages} removeMessage={removeMessage}>
+        {this.renderRoute(location)}
       </Chrome>
     );
+  }
+
+  renderRoute (location) {
+    return location.name === 'home' ? <HomeContainer/> : <ProjectContainer/>;
   }
 }

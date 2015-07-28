@@ -1,4 +1,4 @@
-/*global emit*/
+/* global emit */
 
 import PouchDB from 'pouchdb';
 import fetch from 'isomorphic-fetch';
@@ -12,7 +12,7 @@ const db = new PouchDB('autokitty', {db: memdown});
 export default db;
 
 const {PORT} = process.env;
-const emit = () => {}; // Find out why eslint isn't registering emit as a global below
+
 const designDoc = {
   views: {
     projects: {
@@ -27,11 +27,11 @@ const designDoc = {
 
 db.upsert('_design/autokitty', () => designDoc).catch(console.error);
 
-var fixtures = projects.map(project => {
-  return fetch(`http://localhost:${PORT}/api/project`, {
-    method: 'post',
-    body: JSON.stringify(project)
-  });
-});
-
-Promise.all(fixtures).catch(console.error);
+// var fixtures = projects.map(project => {
+//   return fetch(`http://localhost:${PORT}/api/project`, {
+//     method: 'post',
+//     body: JSON.stringify(project)
+//   });
+// });
+//
+// Promise.all(fixtures).catch(console.error);

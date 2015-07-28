@@ -3,7 +3,7 @@ import React, {Component, PropTypes} from 'react';
 export default class NewProject extends Component {
 
   static propTypes = {
-    addProject: PropTypes.func.isRequired
+    createProject: PropTypes.func.isRequired
   };
 
   state = {title: null};
@@ -14,7 +14,7 @@ export default class NewProject extends Component {
 
   onSubmit (e) {
     e.preventDefault();
-    this.props.addProject(this.state.title);
+    this.props.createProject(this.state.title);
   }
 
   render () {

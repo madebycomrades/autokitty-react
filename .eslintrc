@@ -38,5 +38,7 @@
     "react/jsx-uses-react": 2,
     "react/jsx-uses-vars": 2,
     "react/jsx-quotes": [2,"double"],
+    "react/jsx-curly-spacing": [2, "never"],
+    "react/jsx-no-duplicate-props": 2
   }
 }

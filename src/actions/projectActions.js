@@ -20,16 +20,30 @@ export function resetProject () {
   };
 }
 
-export function addProject (title) {
+export function createProject (title) {
   return {
     types: [
-      types.ADD_PROJECT_PENDING,
-      types.ADD_PROJECT_FULFILLED,
-      types.ADD_PROJECT_REJECTED
+      types.CREATE_PROJECT_PENDING,
+      types.CREATE_PROJECT_FULFILLED,
+      types.CREATE_PROJECT_REJECTED
     ],
     payload: fetch(PROJECT_RESOURCE, {
       method: 'POST',
       body: JSON.stringify({title})
+    })
+  };
+}
+
+export function createMember (projectId, name) {
+  return {
+    types: [
+      types.CREATE_MEMBER_PENDING,
+      types.CREATE_MEMBER_FULFILLED,
+      types.CREATE_MEMBER_REJECTED
+    ],
+    payload: fetch(`${PROJECT_RESOURCE}/${projectId}/member`, {
+      method: 'POST',
+      body: JSON.stringify({name})
     })
   };
 }

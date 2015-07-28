@@ -1,4 +1,4 @@
-import {addMessage} from '../actions/messageActions';
+import {addErrorMessage} from '../actions/messageActions';
 
 export default function promise ({dispatch}) {
 
@@ -18,8 +18,8 @@ export default function promise ({dispatch}) {
       .then(response => {
         const {status} = response;
         if (status < 200 || status >= 300) {
-          const message = `HTTP ${status}`;
-          dispatch(addMessage(message, 'error'));
+          const message = `Error HTTP${status}`;
+          dispatch(addErrorMessage(message));
           throw new Error(message);
         } else {
           return response;
