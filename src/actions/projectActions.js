@@ -48,6 +48,20 @@ export function createMember (projectId, name) {
   };
 }
 
+export function createExpense (projectId, memberSlug, name) {
+  return {
+    types: [
+      types.CREATE_EXPENSE_PENDING,
+      types.CREATE_EXPENSE_FULFILLED,
+      types.CREATE_EXPENSE_REJECTED
+    ],
+    payload: fetch(`${PROJECT_RESOURCE}/${projectId}/member/${memberSlug}/expense`, {
+      method: 'POST',
+      body: JSON.stringify({name})
+    })
+  };
+}
+
 export function getProjects () {
   return {
     types: [

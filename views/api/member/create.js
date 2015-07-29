@@ -1,4 +1,4 @@
-import db from '../../../../db/db';
+import db from '../../../db/db';
 import {json} from 'co-body';
 import route from 'koa-route';
 import shortid from 'shortid';

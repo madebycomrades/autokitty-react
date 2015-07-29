@@ -23,7 +23,7 @@ export default class NewProject extends Component {
       <div>
         <p>Start a new project</p>
         <form onSubmit={::this.onSubmit}>
-          <input type="text" value={title} placeholder="Project title" onChange={::this.onChange}/>
+          <input autoFocus="true" type="text" value={title} placeholder="Project title" onChange={::this.onChange}/>
           <input type="submit" value="Create"/>
         </form>
       </div>

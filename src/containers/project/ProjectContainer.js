@@ -8,7 +8,7 @@ import React from 'react';
 
 @connect(state => ({
   project: state.project,
-  members: state.members,
+  members: state.project.members,
   location: state.location
 }))
 export default class ProjectContainer {
