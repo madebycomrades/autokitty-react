@@ -30,7 +30,10 @@ export default function * () {
 
   const {projectId} = route.params;
 
-  if (projectId) initialState.project = yield db.get(projectId);
+  if (projectId) {
+    initialState.project = yield db.get(projectId);
+    initialState.members = initialState.project.members;
+  }
 
   const store = createStore(initialState);
   const appString = React.renderToString(<AppContainer store={store} router={router}/>);

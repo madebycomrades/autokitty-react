@@ -8,11 +8,13 @@ describe('Chrome', () => {
   let output;
 
   beforeEach(() => {
-    ({output} = renderShallowTree(<Chrome><p>content</p></Chrome>));
+    ({output} = renderShallowTree(
+      <Chrome messages={[]} removeMessage={()=>{}}><p>content</p></Chrome>
+    ));
   });
 
-  it('renders three children', () => {
-    expect(output.props.children.length).toBe(3);
+  it('renders four children', () => {
+    expect(output.props.children.length).toBe(4);
   });
 
   it('renders a heading first', () => {

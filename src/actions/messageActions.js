@@ -1,9 +1,16 @@
 import * as types from '../constants/actionTypes';
 
-export function addMessage (text, type) {
+export function addErrorMessage (text) {
   return {
     type: types.ADD_MESSAGE,
-    payload: {text, type}
+    payload: {text, type: 'error'}
+  };
+}
+
+export function addInfoMessage (text) {
+  return {
+    type: types.ADD_MESSAGE,
+    payload: {text, type: 'info'}
   };
 }
 

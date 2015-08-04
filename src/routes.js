@@ -9,10 +9,10 @@ export default [
   },
   {
     name: 'member',
-    pattern: '/project/:projectId/member/:memberId'
+    pattern: '/project/:projectId/member/:memberSlug'
   },
   {
     name: 'expense',
-    pattern: '/project/:projectId/member/:memberId/expense/:expenseId'
+    pattern: '/project/:projectId/member/:memberSlug/expense/:expenseSlug'
   }
 ];

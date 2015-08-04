@@ -1,6 +1,7 @@
 require('babel/polyfill');
 
 import {resetProject, getProjects, getProject} from './actions/projectActions';
+import {addInfoMessage} from './actions/messageActions';
 import {updateLocation} from './actions/locationActions';
 import * as observables from './observables';
 import AppContainer from './containers/app/AppContainer';
@@ -29,7 +30,10 @@ observables.didNavigateUnCachedProjectRoute(store$)
   });
 
 observables.didCreateProject(store$)
-  .subscribe(projectId => router.transitionTo('project', {projectId}));
+  .subscribe(projectId => {
+    store.dispatch(addInfoMessage('Project created'));
+    router.transitionTo('project', {projectId});
+  });
 
 location$
   .subscribe(location => store.dispatch(updateLocation(location)));

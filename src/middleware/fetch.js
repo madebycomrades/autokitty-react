@@ -1,6 +1,6 @@
-import {addMessage} from '../actions/messageActions';
+import {addErrorMessage} from '../actions/messageActions';
 
-export default function promise ({dispatch}) {
+export default function fetch ({dispatch}) {
 
   return next => action => {
 
@@ -12,21 +12,21 @@ export default function promise ({dispatch}) {
     const {types} = action;
     const [PENDING, FULFILLED, REJECTED] = types;
 
-    next({type: PENDING});
+    dispatch({type: PENDING});
 
     return payload
       .then(response => {
         const {status} = response;
         if (status < 200 || status >= 300) {
-          const message = `HTTP ${status}`;
-          dispatch(addMessage(message, 'error'));
+          const message = `Error HTTP${status}`;
+          dispatch(addErrorMessage(message));
           throw new Error(message);
         } else {
           return response;
         }
       })
       .then(response => response.json ? response.json() : response)
-      .then(data => next({payload: data, type: FULFILLED}))
-      .catch(error => next({payload: error, error: true, type: REJECTED}));
+      .then(data => dispatch({payload: data, type: FULFILLED}))
+      .catch(error => dispatch({payload: error, error: true, type: REJECTED}));
   };
 }

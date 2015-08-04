@@ -5,13 +5,13 @@ import shortid from 'shortid';
 import slug from 'to-slug-case';
 
 export default route.post('/api/project', function * () {
-  const doc = yield json(this);
-  doc._id = `${slug(doc.title)}-${shortid.generate()}`;
-  doc.type = 'project';
-  doc.createdAt = Date.now();
-  doc.members = doc.members ? doc.members : [];
-  yield db.put(doc);
+  const project = yield json(this);
+  project.type = 'project';
+  project._id = project._id || `${slug(project.title)}-${shortid.generate()}`;
+  project.createdAt = project.createdAt || Date.now();
+  project.members = project.members || [];
+  yield db.put(project);
   this.response.status = 201;
   this.response.type = 'json';
-  this.body = JSON.stringify(doc);
+  this.body = JSON.stringify(project);
 });

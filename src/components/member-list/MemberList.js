@@ -1,27 +1,27 @@
 import React, {Component, PropTypes} from 'react';
-import MemberListItem from '../member-list-item/MemberListItem';
+import Link from '../link/Link';
 
 export default class MemberList extends Component {
 
   static propTypes = {
-    deleteMember: PropTypes.func.isRequired
+    members: PropTypes.array,
+    projectId: PropTypes.string
   };
 
   render () {
-    return (
-      <div>
-        {this.props.project.members.map(member => {
+    const {members, projectId} = this.props;
+    const NoMembers = <p>Your project has no members. Add some below...</p>;
+    const TheList = (
+      <ul>
+        {members.map(member => {
           return (
-            <div key={member.slug}>
-              <MemberListItem
-                deleteMember={this.props.deleteMember}
-                projectId={this.props.project._id}
-                member={member}
-              />
-            </div>
+            <li key={member.slug}>
+              <Link route="member" params={{projectId, memberSlug: member.slug}}>{member.name}</Link>
+            </li>
           );
         })}
-      </div>
+      </ul>
     );
+    return members.length > 0 ? TheList : NoMembers;
   }
 }
