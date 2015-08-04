@@ -12,6 +12,6 @@ export default class HomeContainer {
   render () {
     const {dispatch, projects} = this.props;
     const {createProject} = bindActionCreators(projectActions, dispatch);
-    return <Home projects={projects} createProject={createProject}/>
+    return <Home projects={projects} createProject={createProject}/>;
   }
 }

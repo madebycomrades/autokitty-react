@@ -32,7 +32,7 @@ observables.didNavigateUnCachedProjectRoute(store$)
 observables.didCreateProject(store$)
   .subscribe(projectId => {
     store.dispatch(addInfoMessage('Project created'));
-    router.transitionTo('project', {projectId})
+    router.transitionTo('project', {projectId});
   });
 
 location$

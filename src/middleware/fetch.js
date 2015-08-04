@@ -1,6 +1,6 @@
 import {addErrorMessage} from '../actions/messageActions';
 
-export default function promise ({dispatch}) {
+export default function fetch ({dispatch}) {
 
   return next => action => {
 
@@ -12,7 +12,7 @@ export default function promise ({dispatch}) {
     const {types} = action;
     const [PENDING, FULFILLED, REJECTED] = types;
 
-    next({type: PENDING});
+    dispatch({type: PENDING});
 
     return payload
       .then(response => {
@@ -26,7 +26,7 @@ export default function promise ({dispatch}) {
         }
       })
       .then(response => response.json ? response.json() : response)
-      .then(data => next({payload: data, type: FULFILLED}))
-      .catch(error => next({payload: error, error: true, type: REJECTED}));
+      .then(data => dispatch({payload: data, type: FULFILLED}))
+      .catch(error => dispatch({payload: error, error: true, type: REJECTED}));
   };
 }

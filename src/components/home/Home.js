@@ -10,7 +10,7 @@ export default class Home extends Component {
   };
 
   render () {
-    const {projects,createProject} = this.props;
+    const {projects, createProject} = this.props;
     return (
       <div>
         <NewProject createProject={createProject}/>

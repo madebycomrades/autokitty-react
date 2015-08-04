@@ -11,7 +11,7 @@ export default class Project extends Component {
   };
 
   render () {
-    const {children, name, projectId, memberSlug} = this.props;
+    const {name, projectId, memberSlug} = this.props;
     return (
       <div>
         <h2><Link route="member" params={{projectId, memberSlug}}>{name}</Link></h2>

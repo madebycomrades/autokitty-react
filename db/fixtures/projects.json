@@ -1,0 +1,62 @@
+[
+  {
+    "title": "A Jolly Trip",
+    "type": "project",
+    "createdAt": 1438702064182,
+    "_id": "a-jolly-trip-EkZGKptc",
+    "members": [
+      {
+        "name": "Susan",
+        "slug": "susan-VyhGY6Kq",
+        "expenses": [
+          {
+            "name": "Picnic",
+            "slug": "picnic-4kINFaK9",
+            "owner": "susan-VyhGY6Kq",
+            "excluded": []
+          },
+          {
+            "name": "Train fare",
+            "slug": "train-fare-VyQHtaYc",
+            "owner": "susan-VyhGY6Kq",
+            "excluded": [
+              "crispin-Ny77YaYq",
+              "peter-41CMFpY9"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Peter",
+        "slug": "peter-41CMFpY9",
+        "expenses": [
+          {
+            "name": "Lemonade",
+            "slug": "lemonade-4JcvYTK9",
+            "owner": "peter-41CMFpY9",
+            "excluded": []
+          }
+        ]
+      },
+      {
+        "name": "Crispin",
+        "slug": "crispin-Ny77YaYq",
+        "expenses": []
+      },
+      {
+        "name": "Giles",
+        "slug": "giles-EJumYTtq",
+        "expenses": [
+          {
+            "name": "Ice creams",
+            "slug": "ice-creams-41EFFTFq",
+            "owner": "giles-EJumYTtq",
+            "excluded": [
+              "peter-41CMFpY9"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

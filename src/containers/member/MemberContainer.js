@@ -4,10 +4,9 @@ import {createSelector} from 'reselect';
 import * as projectActions from '../../actions/projectActions';
 import ExpenseContainer from '../expense/ExpenseContainer';
 import Member from '../../components/member/Member';
-import MemberContainer from '../member/MemberContainer';
 import MemberOverview from '../../components/member-overview/MemberOverview.js';
-import memberSelector from '../../selectors/member';
-import expensesSelector from '../../selectors/expenses';
+import memberSelector from '../../selectors/memberSelector';
+import expensesSelector from '../../selectors/expensesSelector';
 import React from 'react';
 
 @connect(createSelector(
@@ -18,7 +17,7 @@ import React from 'react';
   ],
   (member, expenses, location) => ({member, location, expenses})
 ))
-export default class ProjectContainer {
+export default class MemberContainer {
 
   render () {
     const {member, location} = this.props;
@@ -29,17 +28,17 @@ export default class ProjectContainer {
       <Member projectId={projectId} memberSlug={memberSlug} name={name}>
         {child()}
       </Member>
-    )
+    );
   }
 
   renderMemberOverview () {
     const {expenses, location, dispatch} = this.props;
     const {projectId, memberSlug} = location.params;
     const {createExpense} = bindActionCreators(projectActions, dispatch);
-    return <MemberOverview expenses={expenses} projectId={projectId} memberSlug={memberSlug} createExpense={createExpense}/>
+    return <MemberOverview expenses={expenses} projectId={projectId} memberSlug={memberSlug} createExpense={createExpense}/>;
   }
 
   renderExpenseContainer () {
-    return <ExpenseContainer/>
+    return <ExpenseContainer/>;
   }
 }

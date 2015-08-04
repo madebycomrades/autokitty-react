@@ -8,7 +8,7 @@ export default route.post('/api/project/:projectId/member/:memberSlug/expense', 
   const expense = yield json(this);
   expense.slug = `${slug(expense.name)}-${shortid.generate()}`;
   expense.owner = memberSlug;
-  expense.participants = [];
+  expense.excluded = [];
   yield db.upsert(projectId, project => {
     const member = project.members.find(member => member.slug === memberSlug);
     member.expenses.push(expense);

@@ -1,7 +1,7 @@
 import {createSelector} from 'reselect';
-import memberSelector from './member';
+import memberSelector from './memberSelector';
 
 export default createSelector(
   memberSelector,
-  member => member.expenses
+  member => member.expenses || []
 );

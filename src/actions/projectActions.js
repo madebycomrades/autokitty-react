@@ -62,6 +62,58 @@ export function createExpense (projectId, memberSlug, name) {
   };
 }
 
+export function excludeMemberFromExpense (projectId, memberSlug, expenseSlug, excludedMemberSlug) {
+  return {
+    payload (dispatch, getState) {
+
+      const members = getState().project.members;
+      const member = members.find(member => member.slug === memberSlug);
+      const expense = member.expenses.find(expense => expense.slug === expenseSlug);
+      const excluded = [...new Set([...expense.excluded, excludedMemberSlug])];
+
+      dispatch({
+        types: [
+          types.EXPENSE_PATCH_PENDING,
+          types.EXPENSE_PATCH_FULFILLED,
+          types.EXPENSE_PATCH_REJECTED
+        ],
+        payload: fetch(`${PROJECT_RESOURCE}/${projectId}/member/${memberSlug}/expense/${expenseSlug}`, {
+          method: 'PATCH',
+          body: JSON.stringify({excluded})
+        })
+      });
+    }
+  };
+}
+
+export function includeMemberInExpense (projectId, memberSlug, expenseSlug, includedMemberSlug) {
+  return {
+    payload (dispatch, getState) {
+
+      const members = getState().project.members;
+      const member = members.find(member => member.slug === memberSlug);
+      const expense = member.expenses.find(expense => expense.slug === expenseSlug);
+
+      const excludedSet = new Set([...expense.excluded]);
+      excludedSet.delete(includedMemberSlug);
+
+      const excluded = [...excludedSet];
+
+      dispatch({
+        types: [
+          types.EXPENSE_PATCH_PENDING,
+          types.EXPENSE_PATCH_FULFILLED,
+          types.EXPENSE_PATCH_REJECTED
+        ],
+        payload: fetch(`${PROJECT_RESOURCE}/${projectId}/member/${memberSlug}/expense/${expenseSlug}`, {
+          method: 'PATCH',
+          body: JSON.stringify({excluded})
+        })
+      });
+    }
+  };
+}
+
 export function getProjects () {
   return {
     types: [

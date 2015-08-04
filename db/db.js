@@ -27,11 +27,11 @@ const designDoc = {
 
 db.upsert('_design/autokitty', () => designDoc).catch(console.error);
 
-// var fixtures = projects.map(project => {
-//   return fetch(`http://localhost:${PORT}/api/project`, {
-//     method: 'post',
-//     body: JSON.stringify(project)
-//   });
-// });
-//
-// Promise.all(fixtures).catch(console.error);
+const fixtures = projects.map(project => {
+  return fetch(`http://localhost:${PORT}/api/project`, {
+    method: 'post',
+    body: JSON.stringify(project)
+  });
+});
+
+Promise.all(fixtures).catch(console.error);

@@ -17,14 +17,32 @@ export default function project (state=initialState, action) {
       members: [...state.members, {...action.payload}]
     };
   case types.CREATE_EXPENSE_FULFILLED:
-    const members = state.members.map(member => {
-      if (member.slug !== action.payload.owner) return member;
-      return {
-        ...member,
-        expenses: [...member.expenses, {...action.payload}]
-      };
-    });
-    return {...state, members};
+    return {
+      ...state,
+      members: state.members.map(member =>
+        member.slug === action.payload.owner ?
+          {...member, expenses: [...member.expenses, {...action.payload}]}
+          : member
+      )
+    };
+  case types.EXPENSE_PATCH_FULFILLED:
+    return {
+      ...state,
+      members: state.members.map(member =>
+        member.slug === action.payload.owner ?
+          {
+            ...member,
+            expenses: member.expenses.map(expense => {
+              if (expense.slug === action.payload.slug) {
+                return action.payload;
+              } else {
+                return expense;
+              }
+            })
+          }
+          : member
+      )
+    };
   default:
     return state;
   }

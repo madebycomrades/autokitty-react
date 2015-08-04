@@ -36,7 +36,7 @@ export default class ProjectContainer {
     if (location.name === 'project') {
       return <ProjectOverview members={members} createMember={createMember} projectId={projectId}/>;
     } else {
-      return <MemberContainer/>
+      return <MemberContainer/>;
     }
   }
 }

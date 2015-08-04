@@ -1,3 +1,4 @@
 import create from './create';
+import patch from './patch';
 
-export default [create];
+export default [create, patch];

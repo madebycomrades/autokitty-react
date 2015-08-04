@@ -10,7 +10,7 @@ export default class Project extends Component {
   };
 
   render () {
-    const {children, title, projectId} = this.props;
+    const {title, projectId} = this.props;
     return (
       <div>
         <h2><Link route="project" params={{projectId}}>{title}</Link></h2>
