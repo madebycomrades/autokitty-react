@@ -1,4 +1,4 @@
-import create from './create';
-import remove from './remove';
+import create from './create'
+import remove from './remove'
 
-export default [create, remove];
+export default [create, remove]

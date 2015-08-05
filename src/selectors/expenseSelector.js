@@ -1,5 +1,5 @@
-import {createSelector} from 'reselect';
-import expensesSelector from './expensesSelector';
+import {createSelector} from 'reselect'
+import expensesSelector from './expensesSelector'
 
 export default createSelector(
   [
@@ -7,4 +7,4 @@ export default createSelector(
     expensesSelector
   ],
   (location, expenses) => expenses.find(expense => expense.slug === location.params.expenseSlug) || {excluded: []}
-);
+)

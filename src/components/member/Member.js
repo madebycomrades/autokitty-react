@@ -1,5 +1,5 @@
-import React, {Component, PropTypes} from 'react';
-import Link from '../link/Link';
+import React, {Component, PropTypes} from 'react'
+import Link from '../link/Link'
 
 export default class Project extends Component {
 
@@ -8,15 +8,15 @@ export default class Project extends Component {
     name: PropTypes.string.isRequired,
     projectId: PropTypes.string.isRequired,
     memberSlug: PropTypes.string.isRequired
-  };
+  }
 
   render () {
-    const {name, projectId, memberSlug} = this.props;
+    const {name, projectId, memberSlug} = this.props
     return (
       <div>
-        <h2><Link route="member" params={{projectId, memberSlug}}>{name}</Link></h2>
+        <h2><Link route='member' params={{projectId, memberSlug}}>{name}</Link></h2>
         {this.props.children}
       </div>
-    );
+    )
   }
 }

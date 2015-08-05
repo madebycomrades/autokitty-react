@@ -1,4 +1,4 @@
-import React, {PropTypes, Component} from 'react';
+import React, {PropTypes, Component} from 'react'
 
 export default class Link extends Component {
 
@@ -7,24 +7,25 @@ export default class Link extends Component {
       transitionTo: PropTypes.func.isRequired,
       reverseRoute: PropTypes.func.isRequired
     }).isRequired
-  };
+  }
 
   static propTypes = {
-    route: PropTypes.string.isRequired,
-    params: PropTypes.object
-  };
+    children: PropTypes.string.isRequired,
+    params: PropTypes.object,
+    route: PropTypes.string.isRequired
+  }
 
   handleClick (e) {
-    e.preventDefault();
-    this.context.router.transitionTo(this.props.route, this.props.params);
+    e.preventDefault()
+    this.context.router.transitionTo(this.props.route, this.props.params)
   }
 
   render () {
-    const path = this.context.router.reverseRoute(this.props.route, this.props.params);
+    const path = this.context.router.reverseRoute(this.props.route, this.props.params)
     return (
       <a href={path} onClick={::this.handleClick}>
         {this.props.children}
       </a>
-    );
+    )
   }
 }

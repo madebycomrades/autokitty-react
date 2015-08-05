@@ -1,6 +1,6 @@
-import {PROJECT_RESOURCE} from '../constants/paths';
-import * as types from '../constants/actionTypes';
-import fetch from 'isomorphic-fetch';
+import {PROJECT_RESOURCE} from '../constants/paths'
+import * as types from '../constants/actionTypes'
+import fetch from 'isomorphic-fetch'
 
 export function getProject (projectId) {
   return {
@@ -10,14 +10,14 @@ export function getProject (projectId) {
       types.GET_PROJECT_REJECTED
     ],
     payload: fetch(`${PROJECT_RESOURCE}/${projectId}`)
-  };
+  }
 }
 
 export function resetProject () {
   return {
     type: types.RESET_PROJECT,
     payload: {}
-  };
+  }
 }
 
 export function createProject (title) {
@@ -31,7 +31,7 @@ export function createProject (title) {
       method: 'POST',
       body: JSON.stringify({title})
     })
-  };
+  }
 }
 
 export function createMember (projectId, name) {
@@ -45,7 +45,7 @@ export function createMember (projectId, name) {
       method: 'POST',
       body: JSON.stringify({name})
     })
-  };
+  }
 }
 
 export function createExpense (projectId, memberSlug, name) {
@@ -59,17 +59,17 @@ export function createExpense (projectId, memberSlug, name) {
       method: 'POST',
       body: JSON.stringify({name})
     })
-  };
+  }
 }
 
 export function excludeMemberFromExpense (projectId, memberSlug, expenseSlug, excludedMemberSlug) {
   return {
     payload (dispatch, getState) {
 
-      const members = getState().project.members;
-      const member = members.find(member => member.slug === memberSlug);
-      const expense = member.expenses.find(expense => expense.slug === expenseSlug);
-      const excluded = [...new Set([...expense.excluded, excludedMemberSlug])];
+      const members = getState().project.members
+      const member = members.find(member => member.slug === memberSlug)
+      const expense = member.expenses.find(expense => expense.slug === expenseSlug)
+      const excluded = [...new Set([...expense.excluded, excludedMemberSlug])]
 
       dispatch({
         types: [
@@ -81,23 +81,23 @@ export function excludeMemberFromExpense (projectId, memberSlug, expenseSlug, ex
           method: 'PATCH',
           body: JSON.stringify({excluded})
         })
-      });
+      })
     }
-  };
+  }
 }
 
 export function includeMemberInExpense (projectId, memberSlug, expenseSlug, includedMemberSlug) {
   return {
     payload (dispatch, getState) {
 
-      const members = getState().project.members;
-      const member = members.find(member => member.slug === memberSlug);
-      const expense = member.expenses.find(expense => expense.slug === expenseSlug);
+      const members = getState().project.members
+      const member = members.find(member => member.slug === memberSlug)
+      const expense = member.expenses.find(expense => expense.slug === expenseSlug)
 
-      const excludedSet = new Set([...expense.excluded]);
-      excludedSet.delete(includedMemberSlug);
+      const excludedSet = new Set([...expense.excluded])
+      excludedSet.delete(includedMemberSlug)
 
-      const excluded = [...excludedSet];
+      const excluded = [...excludedSet]
 
       dispatch({
         types: [
@@ -109,9 +109,9 @@ export function includeMemberInExpense (projectId, memberSlug, expenseSlug, incl
           method: 'PATCH',
           body: JSON.stringify({excluded})
         })
-      });
+      })
     }
-  };
+  }
 }
 
 export function getProjects () {
@@ -122,5 +122,5 @@ export function getProjects () {
       types.GET_PROJECTS_REJECTED
     ],
     payload: fetch(PROJECT_RESOURCE)
-  };
+  }
 }

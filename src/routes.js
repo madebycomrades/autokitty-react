@@ -15,4 +15,4 @@ export default [
     name: 'expense',
     pattern: '/project/:projectId/member/:memberSlug/expense/:expenseSlug'
   }
-];
+]

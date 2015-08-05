@@ -1,4 +1,4 @@
-import create from './create';
-import patch from './patch';
+import create from './create'
+import patch from './patch'
 
-export default [create, patch];
+export default [create, patch]
