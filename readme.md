@@ -44,15 +44,9 @@ $ npm run start:dev
 
 > `npm install` will install the dependencies and then automatically build the client code in a postinstall step.<br/>`npm run start:dev` will spin up the server on localhost:3000.
 
-## CI/Deployment
+## Npm commands
 
-CI is handled by Codeship here https://codeship.com/projects/80431.
-
-Any commit that passes CI on the master branch will trigger an automatic deployment to the Heroku app at http://autokitty.herokuapp.com.
-
-Additionally, raising a PR on GitHub will trigger an automatic deployment of the latest commit in that PR to a temporary Heroku app for QA/review purposes. PR apps are only deployed once their commit passes CI.
-
-## Server
+### Server
 
 Run the server in development mode while watching and restarting,
 
@@ -60,7 +54,7 @@ Run the server in development mode while watching and restarting,
 $ npm run watch:server
 ```
 
-## Client
+### Client
 
 Bundle the client files while watching and re-bundling,
 
@@ -70,7 +64,7 @@ $ npm run watch:client
 
 > You'll need two terminal windows going during development, one for watching the server and one for watching the client.
 
-## Linting and testing
+### Linting and testing
 
 Lint with,
 
@@ -85,6 +79,26 @@ $ npm run -s test
 ```
 
 > The `-s` flag stops npm from filling up your console with its overly chatty output, with `-s` you'll just get the linting and testing tool's stderr or stdout.
+
+## Src folders
+
+- `actions` Redux action creators [docs](http://gaearon.github.io/redux/docs/basics/Actions.html)
+- `components` "Dumb" components [docs](http://gaearon.github.io/redux/docs/basics/UsageWithReact.html)
+- `constants` Generic constants and action type strings [docs](http://gaearon.github.io/redux/docs/basics/Actions.html)
+- `containers` "Smart" components [docs](http://gaearon.github.io/redux/docs/basics/UsageWithReact.html)
+- `middleware` Redux middleware [docs](http://gaearon.github.io/redux/docs/api/applyMiddleware.html)
+- `observables` RxJs streams [docs](http://xgrommx.github.io/rx-book/)
+- `reducers` Redux reducers [docs](http://gaearon.github.io/redux/docs/basics/Reducers.html)
+- `selectors` Redux selectors [docs](https://github.com/faassen/reselect)
+- `utils` Utility functions
+
+## CI and deployment
+
+CI is handled by Codeship here https://codeship.com/projects/80431.
+
+Any commit that passes CI on the master branch will trigger an automatic deployment to the Heroku app at http://autokitty.herokuapp.com.
+
+Additionally, raising a PR on GitHub will trigger an automatic deployment of the latest commit in that PR to a temporary Heroku app for QA/review purposes. PR apps are only deployed once their commit passes CI.
 
 ## Database
 

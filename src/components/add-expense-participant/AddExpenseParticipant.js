@@ -9,7 +9,6 @@ export default class AddExpenseParticipant extends Component {
 
   includeButtonClicked (memberSlug, e) {
     e.preventDefault()
-    console.log(memberSlug)
     this.props.includeParticipant(memberSlug)
   }
 
