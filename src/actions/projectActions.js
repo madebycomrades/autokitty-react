@@ -48,7 +48,7 @@ export function createMember (projectId, name) {
   }
 }
 
-export function createExpense (projectId, memberSlug, name) {
+export function createExpense (projectId, memberSlug, name, amount) {
   return {
     types: [
       types.CREATE_EXPENSE_PENDING,
@@ -57,7 +57,7 @@ export function createExpense (projectId, memberSlug, name) {
     ],
     payload: fetch(`${PROJECT_RESOURCE}/${projectId}/member/${memberSlug}/expense`, {
       method: 'POST',
-      body: JSON.stringify({name})
+      body: JSON.stringify({name, amount})
     })
   }
 }

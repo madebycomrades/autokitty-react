@@ -11,12 +11,14 @@
         "expenses": [
           {
             "name": "Picnic",
+            "amount": "6.20",
             "slug": "picnic-4kINFaK9",
             "owner": "susan-VyhGY6Kq",
             "excluded": []
           },
           {
             "name": "Train fare",
+            "amount": "2.25",
             "slug": "train-fare-VyQHtaYc",
             "owner": "susan-VyhGY6Kq",
             "excluded": [
@@ -32,6 +34,7 @@
         "expenses": [
           {
             "name": "Lemonade",
+            "amount": "3.00",
             "slug": "lemonade-4JcvYTK9",
             "owner": "peter-41CMFpY9",
             "excluded": []
@@ -49,6 +52,7 @@
         "expenses": [
           {
             "name": "Ice creams",
+            "amount": "1.32",
             "slug": "ice-creams-41EFFTFq",
             "owner": "giles-EJumYTtq",
             "excluded": [
