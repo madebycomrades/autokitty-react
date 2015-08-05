@@ -1,13 +1,11 @@
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {createSelector} from 'reselect'
+import {expenseSelector, expenseNonParticipantsSelector, expenseParticipantsSelector} from '../../selectors'
 import * as projectActions from '../../actions/projectActions'
 import AddExpenseParticipant from '../../components/add-expense-participant/AddExpenseParticipant'
-import ExpenseParticipantList from '../../components/expense-participant-list/ExpenseParticipantList'
 import Expense from '../../components/expense/Expense'
-import expenseSelector from '../../selectors/expenseSelector'
-import expenseNonParticipantsSelector from '../../selectors/expenseNonParticipantsSelector'
-import expenseParticipantsSelector from '../../selectors/expenseParticipantsSelector'
+import ExpenseParticipantList from '../../components/expense-participant-list/ExpenseParticipantList'
 import React, {PropTypes} from 'react'
 
 @connect(createSelector(

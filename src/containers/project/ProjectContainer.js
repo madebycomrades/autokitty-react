@@ -1,16 +1,17 @@
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
+import {createSelector} from 'reselect'
+import {membersSelector} from '../../selectors'
 import * as projectActions from '../../actions/projectActions'
 import MemberContainer from '../member/MemberContainer'
 import Project from '../../components/project/Project'
 import ProjectOverview from '../../components/project-overview/ProjectOverview'
 import React from 'react'
 
-@connect(state => ({
-  project: state.project,
-  members: state.project.members,
-  location: state.location
-}))
+@connect(createSelector(
+  [state => state.project, membersSelector, state => state.location],
+  (project, members, location) => ({project, members, location})
+))
 export default class ProjectContainer {
 
   render () {
