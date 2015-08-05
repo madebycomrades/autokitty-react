@@ -44,7 +44,7 @@ export default class ExpenseContainer {
   render () {
     const {expense, nonParticipants, participants} = this.props
     return (
-      <Expense name={expense.name}>
+      <Expense name={expense.name} amount={expense.amount}>
         <ExpenseParticipantList participants={participants} removeParticipant={::this.removeParticipant}/>
         <AddExpenseParticipant nonParticipants={nonParticipants} includeParticipant={::this.includeParticipant}/>
       </Expense>
