@@ -3,9 +3,11 @@
 [![Codeship](https://img.shields.io/codeship/abe27f10-debd-0132-a627-465ff4e7e511/master.svg?label=master&style=flat-square)](https://codeship.com/projects/80431)
 [![Codeship](https://img.shields.io/codeship/abe27f10-debd-0132-a627-465ff4e7e511/develop.svg?label=develop&style=flat-square)](https://codeship.com/projects/80431)
 
-> This kitty sorts out your complicated group expenses.
+[![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
 
 ## Overview
+
+> This kitty sorts out your complicated group expenses.
 
 The plan is for AutoKitty to be an app that lets users create collaborative projects to manage complicated group expenses. Imagine you've gone on holiday with friends and you've all spent a lot of money on group expenses. Some people are involved in some expenses, while others are exempt (perhaps they don't drink alchohol for example, or they shouldn't contribute to petrol because they travelled by train).
 
@@ -20,13 +22,14 @@ There are many other apps that do similar things. This project is mainly a learn
 
 ## Tech
 
-- ~~Isomorphic~~Universal React
-- Redux (atomic flux with reducers)
+- ~~Isomorphic~~ Universal app
+- React+Redux (atomic flux with reducers)
 - RxJS (reactive state streams)
-- Babel (ES6>ES5 transpiling)
+- Babel (ES6)
 - Browserify (client bundling)
 - Koa (static file server and REST API)
 - PouchDB (CouchDB adapter)
+- Standard (code style)
 
 ## System requirements
 
