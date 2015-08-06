@@ -21,8 +21,7 @@ export default class ProjectContainer {
   }
 
   renderProject () {
-    const {project} = this.props
-    const {title, _id: projectId} = project
+    const {project: {title, _id: projectId}} = this.props
     return (
       <Project title={title} projectId={projectId}>
         {this.renderProjectChildren()}

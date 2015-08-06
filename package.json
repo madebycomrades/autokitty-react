@@ -6,7 +6,7 @@
     "postinstall": "npm run bundle && npm run uglify && npm run gzip",
     "start": "babel-node --stage 0 index.js",
     "start:dev": "NODE_ENV=development PORT=3000 npm start",
-    "watch:server": "nodemon --watch index.js --watch views --watch db --ext js,json,hbs --exec 'npm run start:dev'",
+    "watch:server": "nodemon --watch index.js --watch server --watch db --ext js,json,hbs --exec 'npm run start:dev'",
     "watch:client": "npm run clean && WATCHIFY=true NODE_ENV=development babel-node --stage 0 browserify.js",
     "bundle": "npm run clean && NODE_ENV=production babel-node --stage 0 browserify.js",
     "uglify": "uglifyjs static/main.bundle.js -o static/main.bundle.js -m -c unused=false",
