@@ -1,9 +1,8 @@
-/* global emit */
-
-import PouchDB from 'pouchdb'
 import fetch from 'isomorphic-fetch'
 import memdown from 'memdown'
+import PouchDB from 'pouchdb'
 import projects from './fixtures/projects'
+import projectsDesignDoc from './design/projects'
 import upsert from 'pouchdb-upsert'
 
 PouchDB.plugin(upsert)
@@ -11,24 +10,14 @@ PouchDB.plugin(upsert)
 const db = new PouchDB('autokitty', {db: memdown})
 export default db
 
+// The rest of this code adds a design document and fixtures and will probably
+// only be used for the dev/test envs. A different approach will be used when
+// in production and dealing with a remote database
+
+db.put(projectsDesignDoc)
+  .catch(console.error)
+
 const {PORT} = process.env
-
-const mapProject = function (doc) {
-  if (doc.type === 'project') {
-    emit(doc._id, doc)
-  }
-}
-
-const designDoc = {
-  views: {
-    projects: {
-      map: mapProject.toString()
-    }
-  }
-}
-
-db.upsert('_design/autokitty', () => designDoc).catch(console.error)
-
 const fixtures = projects.map(project => {
   return fetch(`http://localhost:${PORT}/api/project`, {
     method: 'post',
@@ -36,4 +25,5 @@ const fixtures = projects.map(project => {
   })
 })
 
-Promise.all(fixtures).catch(console.error)
+Promise.all(fixtures)
+  .catch(console.error)
