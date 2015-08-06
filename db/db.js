@@ -1,29 +1,39 @@
-import upsert from 'pouchdb-upsert';
-import PouchDB from 'pouchdb';
-import memdown from 'memdown';
-import projects from './fixtures/projects';
-import ProjectRecord from '../public/records/ProjectRecord';
+/* global emit */
 
-PouchDB.plugin(upsert);
+import PouchDB from 'pouchdb'
+import fetch from 'isomorphic-fetch'
+import memdown from 'memdown'
+import projects from './fixtures/projects'
+import upsert from 'pouchdb-upsert'
 
-const db = new PouchDB('autokitty',{db: memdown});
+PouchDB.plugin(upsert)
+
+const db = new PouchDB('autokitty', {db: memdown})
+export default db
+
+const {PORT} = process.env
+
+const mapProject = function (doc) {
+  if (doc.type === 'project') {
+    emit(doc._id, doc)
+  }
+}
 
 const designDoc = {
   views: {
     projects: {
-      map: (doc => {
-        if (doc.type === 'project') {
-          emit(doc._id,doc);
-        }
-      }).toString()
+      map: mapProject.toString()
     }
   }
-};
+}
 
-db.upsert('_design/autokitty',() => designDoc)
-  .catch(error => console.log(error));
+db.upsert('_design/autokitty', () => designDoc).catch(console.error)
 
-db.bulkDocs(projects.map(project => new ProjectRecord(project).toJS()))
-  .catch(error => console.log(error));
+const fixtures = projects.map(project => {
+  return fetch(`http://localhost:${PORT}/api/project`, {
+    method: 'post',
+    body: JSON.stringify(project)
+  })
+})
 
-export default db;
+Promise.all(fixtures).catch(console.error)
