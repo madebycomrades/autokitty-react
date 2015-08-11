@@ -1,7 +1,7 @@
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {createSelector} from 'reselect'
-import {expenseSelector, expenseNonParticipantsSelector, expenseParticipantsSelector} from '../../selectors'
+import {currentExpense, currentExpenseNonParticipants, currentExpenseParticipants} from '../../selectors'
 import * as projectActions from '../../actions/projectActions'
 import AddExpenseParticipant from '../../components/add-expense-participant/AddExpenseParticipant'
 import Expense from '../../components/expense/Expense'
@@ -11,9 +11,9 @@ import React, {PropTypes} from 'react'
 @connect(createSelector(
   [
     state => state.location,
-    expenseSelector,
-    expenseNonParticipantsSelector,
-    expenseParticipantsSelector
+    currentExpense,
+    currentExpenseNonParticipants,
+    currentExpenseParticipants
   ],
   (location, expense, nonParticipants, participants) => ({location, expense, nonParticipants, participants})
 ))

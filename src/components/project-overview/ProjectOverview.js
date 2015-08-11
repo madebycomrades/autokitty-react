@@ -7,14 +7,15 @@ export default class ProjectOverview extends Component {
   static propTypes = {
     members: PropTypes.array.isRequired,
     projectId: PropTypes.string.isRequired,
-    createMember: PropTypes.func.isRequired
+    createMember: PropTypes.func.isRequired,
+    balancesMap: PropTypes.instanceOf(Map)
   }
 
   render () {
-    const {members, projectId, createMember} = this.props
+    const {members, projectId, createMember, balancesMap} = this.props
     return (
       <div>
-        <MemberList members={members} projectId={projectId}/>
+        <MemberList members={members} projectId={projectId} balancesMap={balancesMap}/>
         <NewMember createMember={createMember} projectId={projectId}/>
       </div>
     )

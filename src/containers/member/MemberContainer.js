@@ -1,7 +1,7 @@
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {createSelector} from 'reselect'
-import {memberSelector, expensesSelector} from '../../selectors'
+import {currentMember, currentExpenses} from '../../selectors'
 import * as projectActions from '../../actions/projectActions'
 import ExpenseContainer from '../expense/ExpenseContainer'
 import Member from '../../components/member/Member'
@@ -9,7 +9,7 @@ import MemberOverview from '../../components/member-overview/MemberOverview.js'
 import React, {PropTypes} from 'react'
 
 @connect(createSelector(
-  [memberSelector, expensesSelector, state => state.location],
+  [currentMember, currentExpenses, state => state.location],
   (member, expenses, location) => ({member, location, expenses})
 ))
 export default class MemberContainer {
