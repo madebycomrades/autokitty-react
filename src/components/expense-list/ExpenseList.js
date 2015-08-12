@@ -11,7 +11,7 @@ export default class ExpenseList extends Component {
 
   render () {
     const {expenses, projectId, memberSlug} = this.props
-    const NoExpenses = <p>Your project has no expenses. Add some below...</p>
+    const NoExpenses = <p>This member has no expenses. Add some below...</p>
     const TheList = (
       <ul>
         {expenses.map(expense => {

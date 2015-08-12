@@ -28,19 +28,19 @@ export default function project (state=initialState, action) {
     case types.EXPENSE_PATCH_FULFILLED:
       return {
         ...state,
-        members: state.members.map(member =>
-          member.slug === action.payload.owner ?
-            {
-              ...member,
-              expenses: member.expenses.map(expense => {
-                if (expense.slug === action.payload.slug) {
-                  return action.payload
-                } else {
-                  return expense
-                }
-              })
-            }
-            : member
+        members: state.members.map(
+          member =>
+            member.slug === action.payload.owner ?
+              {
+                ...member,
+                expenses: member.expenses.map(
+                  expense =>
+                    expense.slug === action.payload.slug ?
+                      action.payload :
+                      expense
+                )
+              } :
+              member
         )
       }
     default:
