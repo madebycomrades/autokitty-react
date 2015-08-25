@@ -6,7 +6,7 @@ const initialState = [{
   type: 'info'
 }]
 
-export default function projects (state=initialState, action) {
+export default function projects (state = initialState, action) {
   switch (action.type) {
     case types.ADD_MESSAGE:
       return [{

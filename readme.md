@@ -33,7 +33,9 @@ There are many other apps that do similar things. This project is mainly a learn
 
 ## System requirements
 
-- iojs `^2.0.0` (manage Node versions with [nvm](https://github.com/creationix/nvm))
+- iojs `3.1.0`, npm `2.13.3`
+
+> Manage Node versions with [nvm](https://github.com/creationix/nvm))
 
 ## Quick start
 

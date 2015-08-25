@@ -4,7 +4,7 @@ const initialState = {
   members: []
 }
 
-export default function project (state=initialState, action) {
+export default function project (state = initialState, action) {
   switch (action.type) {
     case types.RESET_PROJECT:
       return initialState
