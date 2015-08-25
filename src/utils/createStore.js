@@ -6,6 +6,6 @@ const middleware = [thunk, fetch, logger]
 const finalCreateStore = applyMiddleware(...middleware)(createStore)
 const reducer = combineReducers(reducers)
 
-export default function (initialState={}) {
+export default function (initialState = {}) {
   return finalCreateStore(reducer, initialState)
 }
